@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elements of Design Summative Quiz</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+            <div class="flex items-center">
+                <i data-feather="palette" class="text-indigo-600"></i>
+                <span class="ml-2 text-xl font-semibold text-gray-900">Visual Arts</span>
+            </div>
+            <div class="flex items-center space-x-8">
+
+                <a href="learn.html" class="text-indigo-600 border-b-2 border-indigo-600 px-3 py-2 text-sm font-medium">Learn</a>
+                <a href="dashboard_new.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold mb-4 text-yellow-700">Elements of Design Summative Assessment</h1>
+        <p class="mb-6 text-lg text-gray-700">Answer all 30 multiple-choice questions below. Good luck!</p>
+        <form id="elementsQuiz">
+            <!-- 30 MCQ questions will be inserted here -->
+        </form>
+        <button id="submitElementsQuiz" class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded font-semibold">Submit Quiz</button>
+        <div id="elementsQuizResult" class="mt-6 text-lg font-bold"></div>
+    </main>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>feather.replace();</script>
+    <script src="assets/js/save-current-user.js"></script>
+    <script>
+    // Elements of Design Quiz Questions (updated to cover new lessons: Texture, Shape, Value, Color, Rhythm, White Space)
+    const questions = [
+        { q: "Which element describes the surface quality of objects, either real or implied (see the Texture lesson)?", options: ["Tone", "Texture", "Space", "Form"], answer: 1 },
+        { q: "What is the difference between shape and form?", options: ["Shape is 2D, form is 3D", "Form is 2D, shape is 3D", "They are the same", "Both describe texture"], answer: 0 },
+        { q: "Which technique helps show gradual changes from light to dark and is discussed in the Value lesson?", options: ["Cross-hatching", "Shading", "Stippling", "Contour drawing"], answer: 1 },
+        { q: "Which element refers to the area around and between objects (related to White Space)?", options: ["Space", "Tone", "Line", "Texture"], answer: 0 },
+        { q: "Which element is primarily used to create paths and directions in a composition?", options: ["Shape", "Line", "Colour", "Value"], answer: 1 },
+        { q: "Which of these best explains implied texture?", options: ["A texture you can touch", "A painted surface that looks textured", "A 3D sculptural surface", "A glossy finish only"], answer: 1 },
+        { q: "Which element would most likely be used to create the illusion of depth on a flat surface?", options: ["Texture", "Value","Line", "Shape"], answer: 1 },
+        { q: "A silhouette emphasises which element?", options: ["Tone", "Shape", "Form", "Line"], answer: 1 },
+        { q: "Which element concerns height and width but not depth?", options: ["Form", "Shape", "Tone", "Colour"], answer: 1 },
+        { q: "Which element is described by hue, saturation and value?", options: ["Texture", "Colour", "Space", "Line"], answer: 1 },
+
+        { q: "What is a tint as discussed in Color-related element studies?", options: ["A color mixed with black", "A color mixed with white", "A pure hue", "A neutral tone"], answer: 1 },
+        { q: "Which element do artists change to create emphasis using contrast?", options: ["Colour or Value", "Space only", "Texture only", "Line only"], answer: 0 },
+        { q: "Which element would a designer manipulate to change the figure-ground relationship?", options: ["Line", "Space", "Texture", "Shade"], answer: 1 },
+        { q: "Which element is most important in sculpture?", options: ["Space", "Form", "Colour", "Line"], answer: 1 },
+        { q: "Which technique is best for showing roughness on a surface in drawing?", options: ["Stippling", "Flat wash", "Monochrome", "Sgraffito"], answer: 0 },
+
+        { q: "Which element helps create rhythm when repeated across a composition (covered in Rhythm lesson)?", options: ["Line", "Texture", "Form", "All of the above"], answer: 3 },
+        { q: "Which element can be used to create a focal point by changing its size relative to others (related to Proportion)?", options: ["Shape", "Line", "Texture", "Space"], answer: 0 },
+        { q: "What does value describe in visual art?", options: ["Lightness and darkness", "Surface quality", "Hue family", "Line weight"], answer: 0 },
+        { q: "Which element would you adjust to create softer edges and a sense of atmosphere?", options: ["Value/tonal gradation", "Sharp line work", "Pattern", "High contrast"], answer: 0 },
+        { q: "Which element helps designers create a sense of order and calm when left intentionally empty?", options: ["White Space", "Texture", "Form", "Hue"], answer: 0 },
+
+        { q: "Which element pair most directly affects mood via warm and cool choices?", options: ["Line & Form", "Texture & Space", "Colour & Value", "Shape & Proportion"], answer: 2 },
+        { q: "When shapes are arranged predictably they often create which visual quality?", options: ["Chaos", "Pattern", "Negative space only", "None of the above"], answer: 1 },
+        { q: "Which element is useful for creating contrast between foreground and background?", options: ["Value", "Form", "Texture", "Size"], answer: 0 },
+        { q: "Which element is usually described using terms such as geometric or organic?", options: ["Form", "Shape", "Texture", "Value"], answer: 1 },
+        { q: "Which element is most responsible for the tactile quality of a painting?", options: ["Texture", "Line", "Hue", "Value"], answer: 0 },
+
+        { q: "Which element would you reference when discussing hue families and colour fundamentals?", options: ["Colour", "Space", "Line", "Form"], answer: 0 },
+        { q: "Which visual tool helps artists show volume on a 2D surface?", options: ["Value (shading)", "Contour lines only", "Hue shifts only", "Analogous colours only"], answer: 0 },
+        { q: "Which element can be altered to make small objects appear more important in a composition?", options: ["Value (contrast)", "Scale/Proportion", "Texture only", "Hue only"], answer: 1 }
+    ];
+    const form = document.getElementById('elementsQuiz');
+    questions.forEach((q, idx) => {
+        const div = document.createElement('div');
+        div.className = 'mb-6 p-4 bg-white rounded shadow';
+        div.innerHTML = `<p class='font-medium mb-2'>${idx+1}. ${q.q}</p>` +
+            q.options.map((opt, oi) => `<label class='block mb-1'><input type='radio' name='q${idx}' value='${oi}' class='mr-2'>${opt}</label>`).join('');
+        form.appendChild(div);
+    });
+    document.getElementById('submitElementsQuiz').onclick = function() {
+        let score = 0;
+        questions.forEach((q, idx) => {
+            const selected = form.querySelector(`input[name='q${idx}']:checked`);
+            if(selected && Number(selected.value) === q.answer) score++;
+        });
+        // Show results and reveal correct/incorrect answers
+        let resultHtml = `<div class='mb-4'>You scored <span class='font-bold text-yellow-700'>${score} out of 30</span>.</div>`;
+        questions.forEach((q, idx) => {
+            const selected = form.querySelector(`input[name='q${idx}']:checked`);
+            const userAnswer = selected ? Number(selected.value) : null;
+            const isCorrect = userAnswer === q.answer;
+            resultHtml += `<div class='mb-2 p-3 rounded ${isCorrect ? 'bg-green-50 border border-green-400' : 'bg-red-50 border border-red-400'}'>` +
+                `<span class='font-semibold'>Q${idx+1}:</span> ${q.q}<br>` +
+                `<span>Your answer: <span class='${isCorrect ? 'text-green-700' : 'text-red-700'}'>${userAnswer !== null ? q.options[userAnswer] : '<em>No answer</em>'}</span></span><br>` +
+                (!isCorrect ? `<span>Correct answer: <span class='text-green-700 font-semibold'>${q.options[q.answer]}</span></span>` : '') +
+            `</div>`;
+        });
+        document.getElementById('elementsQuizResult').innerHTML = resultHtml;
+        // Save score to user progress in localStorage
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            if (!currentUser.progress) currentUser.progress = { lessonsCompleted: [], quizScores: {} };
+            currentUser.progress.quizScores = currentUser.progress.quizScores || {};
+            currentUser.progress.quizScores['elements'] = Math.round((score/30)*100);
+            try { if (window.saveCurrentUser) saveCurrentUser(currentUser); else localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch (e) {}
+        }
+    };
+    </script>
+</body>
+</html>

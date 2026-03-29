@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ama’s Design Challenge | ArtKonet</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    .drag-over { border: 2px dashed #06b6d4 !important; background: #e0f2fe !important; }
+    .draggable:focus { outline: 2px solid #f59e42; outline-offset: 2px; }
+    .dropzone:focus { outline: 2px solid #06b6d4; outline-offset: 2px; }
+    .visually-hidden { position: absolute; left: -9999px; }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- Navbar -->
+  <!-- Navigation -->
+   
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Intro -->
+    <section class="mb-10">
+      <h1 class="text-3xl font-bold text-indigo-700 mb-4">Ama’s Design Challenge</h1>
+      <p class="text-lg text-gray-700 mb-4">Ama is a Senior High School Visual Arts student who has been given a real project to design the packaging for a new biscuit company. She worked very hard and submitted three packaging samples to the company. Unfortunately, all three designs were rejected! The company said her designs did not reflect the brand identity and would not attract buyers. Now Ama needs your help to find out what went wrong. As an aspiring designer, your job is to analyze Ama’s three packaging designs, identify the problems, and help her select the best colour scheme and design approach for the biscuit packaging?</p>
+
+      <!-- Video with captions and transcript -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold text-orange-600 mb-2">Watch: Ama’s Design Struggles</h2>
+      <video id="amaVideo" class="w-full rounded-lg mb-2" controls aria-label="Ama’s Design Struggles video">
+        <source src="IMAGES/ama.mp4" type="video/mp4">
+        <track src="IMAGES/ama.vtt" kind="captions" srclang="en" label="English" default>
+        Sorry, your browser does not support embedded videos.
+      </video>
+      <button id="showTranscript" class="text-teal-600 underline mb-2" aria-expanded="false">Show Transcript</button>
+      <div id="transcript" class="bg-gray-100 rounded p-4 text-gray-700 text-sm mb-2 hidden" tabindex="0" aria-label="Video transcript">
+        <strong>Transcript:</strong> Ama is a Senior High School Visual Arts student who has been given a real project — to design the packaging for a new biscuit company. She worked very hard and submitted three packaging samples to the company. Unfortunately, all three designs were rejected! The company said her designs did not reflect the brand identity and would not attract buyers. Now Ama needs your help to find out what went wrong. As an aspiring designer, your job is to analyze Ama’s three packaging designs, identify the problems, and help her select the best colour scheme and design approach for the biscuit packaging.. (Full transcript in ama.vtt)
+      </div>
+      <!-- Placeholder for Ama and the three designs -->
+        <div class="mt-8 flex flex-col md:flex-row items-center justify-center gap-8">
+        <div class="flex flex-col items-center">
+            <!-- Ama static image -->
+            <img id="amaImage" src="IMAGES/ama.jpg" alt="Ama" class="w-48 h-48 bg-gray-200 rounded-full object-cover mb-2 shadow-lg border-4 border-indigo-300" />
+          <span class="text-sm text-gray-700 font-medium">Ama</span>
+        </div>
+        <!-- Design images (static) -->
+        <div class="flex flex-col items-center">
+            <img id="design1Img" role="button" tabindex="0" class="design-card w-32 h-48 bg-white border border-gray-200 rounded-lg object-cover mb-2" data-design="design1" aria-expanded="false" aria-controls="designBriefs" src="IMAGES/sample 1.png" alt="Design 1">
+          <span class="text-xs text-gray-600">Design 1</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <img id="design2Img" role="button" tabindex="0" class="design-card w-32 h-48 bg-white border border-gray-200 rounded-lg object-cover mb-2" data-design="design2" aria-expanded="false" aria-controls="designBriefs" src="IMAGES/sample 2.png" alt="Design 2">
+          <span class="text-xs text-gray-600">Design 2</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <img id="design3Img" role="button" tabindex="0" class="design-card w-32 h-48 bg-white border border-gray-200 rounded-lg object-cover mb-2" data-design="design3" aria-expanded="false" aria-controls="designBriefs" src="IMAGES/smaple 3.png" alt="Design 3">
+          <span class="text-xs text-gray-600">Design 3</span>
+        </div>
+      </div>
+
+      <!-- Hidden briefs block revealed when a design is clicked -->
+      <div id="designBriefs" class="mt-6 bg-gray-50 p-4 rounded shadow hidden" aria-hidden="true">
+        <div class="flex justify-between items-start">
+          <h4 class="font-semibold text-gray-800">Design Briefs</h4>
+          <button id="hideBriefs" class="text-sm text-gray-500 hover:text-gray-700">Hide briefs</button>
+        </div>
+        <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="p-3 bg-white rounded border"> <strong>Fun-Design Smaple 1</strong><div class="text-sm text-gray-600">Fun and playful biscuit packaging for kids – choose a color palette that feels lively and energetic.</div></div>
+          <div class="p-3 bg-white rounded border"> <strong>Trust-Design Smaple 2</strong><div class="text-sm text-gray-600">Trustworthy and natural biscuit packaging for families – select a palette that communicates freshness and reliability.</div></div>
+          <div class="p-3 bg-white rounded border"> <strong>Premium- Design Smaple 3</strong><div class="text-sm text-gray-600">Premium and elegant biscuit packaging for adults – pick a color palette that looks sophisticated and stands out.</div></div>
+        </div>
+      </div>
+      <!-- Review section: let students pick a design and submit a suggestion -->
+      <section class="mt-6 mb-8 bg-white p-4 rounded shadow">
+        <h3 class="text-lg font-semibold text-indigo-700 mb-2">Review Ama’s Designs</h3>
+        <p class="text-sm text-gray-600 mb-2">Select the design you think needs improvement and tell us what you think is wrong with it.</p>
+        <div class="flex gap-4 items-start mb-3">
+          <label class="flex items-center gap-2"><input type="radio" name="selectedDesign" value="design1">Design 1</label>
+          <label class="flex items-center gap-2"><input type="radio" name="selectedDesign" value="design2">Design 2</label>
+          <label class="flex items-center gap-2"><input type="radio" name="selectedDesign" value="design3">Design 3</label>
+        </div>
+        <label for="suggestionBox" class="block mb-2">Your suggestion (what's the problem?):</label>
+        <textarea id="suggestionBox" rows="3" class="w-full p-2 border rounded mb-3" placeholder="Describe what you think is wrong and how to improve it..."></textarea>
+        <div class="flex items-center gap-3">
+          <div class="flex gap-2">
+            <button id="submitSuggestion" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Submit Suggestion</button>
+            <button id="clearSuggestion" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Clear</button>
+          </div>
+          <!-- Export icons placed near suggestion box for easy teacher access -->
+          <div class="ml-auto flex items-center gap-2">
+            <button id="exportTxtBtn" title="Export suggestions (TXT)" aria-label="Export suggestions TXT" class="p-2 bg-gray-100 rounded hover:bg-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor"><path d="M7 2a1 1 0 00-1 1v14a1 1 0 001 1h6a1 1 0 001-1V7l-4-5H7zm5 2.5V6h2.5L12 4.5zM8 9h4v1H8V9zm0 2h4v1H8v-1z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="suggestionFeedback" class="mt-3 text-sm font-semibold text-green-700"></div>
+      </section>
+    </section>
+       
+    
+
+    <!-- Offline Assignment -->
+    <section class="mb-10 bg-yellow-50 p-4 rounded shadow">
+      <h2 class="text-xl font-bold text-yellow-700 mb-3">Offline Assignment: Redesign Ama’s Samples</h2>
+      <p class="mb-2">Create three new versions of Ama’s packaging samples (one for each brief). Use paper, markers, or a digital tool. Your teacher will assess these offline.</p>
+      <ul class="list-disc pl-5 mb-3 text-sm text-gray-700">
+      <li>Produce three distinct redesigns addressing the brief for <strong>Fun</strong>, <strong>Trust</strong>, and <strong>Premium</strong>.</li>
+      <li>Annotate each redesign with the changes you made and why.</li>
+      <li>Bring your physical or digital files to class for teacher assessment.</li>
+      </ul>
+      <div class="flex items-center gap-3">
+      <button id="downloadBriefPdf" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">Download Assignment Brief (.pdf)</button>
+      <button id="markOfflineDone" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Mark as Done</button>
+      <script>
+        // Mark as Done button interactivity and dashboard score update
+        document.getElementById('markOfflineDone').addEventListener('click', function() {
+          // Mark offline assignment as done in localStorage
+          let prog = JSON.parse(localStorage.getItem('amaChallengeProgress') || '{}');
+          prog.offline = 1;
+          localStorage.setItem('amaChallengeProgress', JSON.stringify(prog));
+          // Update score for logged-in user (assumes user info in localStorage)
+          let user = JSON.parse(localStorage.getItem('currentUser') || '{}');
+          if (user && user.username) {
+        let scores = JSON.parse(localStorage.getItem('userScores') || '{}');
+        scores[user.username] = scores[user.username] || {};
+        scores[user.username].amaOffline = 1;
+        localStorage.setItem('userScores', JSON.stringify(scores));
+          }
+          // Update dashboard if function exists
+          if (typeof updateDashboardScore === 'function') updateDashboardScore('amaOffline', 1);
+          // Show status
+          document.getElementById('offlineStatus').textContent = 'Offline assignment marked as done.';
+        });
+      </script>
+      <div id="offlineStatus" class="ml-4 text-sm font-semibold text-teal-700"></div>
+      </div>
+    </section>
+    <script>
+      // PDF download for assignment brief
+      document.getElementById('downloadBriefPdf').addEventListener('click', function() {
+      const briefText = `Offline Assignment - Ama's Redesigns
+
+  Task:
+  Create three redesigned packaging samples for Ama, addressing the briefs:
+  - Fun: playful, energetic design for kids
+  - Trust: natural, family-friendly design
+  - Premium: elegant, sophisticated design for adults
+
+  Deliverables:
+  1) Three labeled images or scans (PDF/JPG/PNG)
+  2) A short note (1-2 paragraphs) explaining the changes made for each design
+
+  Bring your files to class for teacher assessment.`;
+
+      // Use jsPDF to generate PDF
+      const script = document.createElement('script');
+      script.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js";
+      script.onload = function() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFont("helvetica");
+        doc.setFontSize(14);
+        const lines = doc.splitTextToSize(briefText, 180);
+        doc.text(lines, 15, 20);
+        doc.save("ama-offline-brief.pdf");
+      };
+      document.body.appendChild(script);
+      });
+    </script>
+
+
+<!-- Reflection -->
+    <section class="mb-10">
+      <h2 class="text-xl font-bold text-indigo-700 mb-4">Reflection</h2>
+      <p class="text-sm text-orange-600 mb-3">Hint: Complete this reflection after you finish the offline redesign assignment.</p>
+      <label for="reflectionBox" class="block mb-2">What change made Ama’s design clearer and stronger?</label>
+      <textarea id="reflectionBox" rows="3" class="w-full p-2 border rounded mb-2" aria-label="Reflection answer"></textarea>
+      <button id="downloadReflection" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 mb-2">Download Reflection (.txt)</button>
+    </section>
+
+
+    <!-- Progress Summary & Wrap-up -->
+    <section class="mb-10">
+
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+       <a href="dashboard_new.html"> <button id="toDashboard" class="bg-orange-600 text-white px-6 py-2 rounded hover:bg-orange-700"> ⬅️ Return to Dashboard</button></a> 
+        <button id="toOffline" class="bg-teal-600 text-white px-6 py-2 rounded hover:bg-teal-700">Continue to Offline Redesign</button>
+      </div>
+    </section>
+  </main>
+
+ 
+
+  <script src="assets/js/ama-challenge.js"></script>
+  <script>
+    // Transcript toggle
+    document.getElementById('showTranscript').addEventListener('click', function() {
+      const t = document.getElementById('transcript');
+      t.classList.toggle('hidden');
+      this.setAttribute('aria-expanded', t.classList.contains('hidden') ? 'false' : 'true');
+    });
+    // Suggestion box handlers for Review Ama's Designs
+    (function() {
+      const submitBtn = document.getElementById('submitSuggestion');
+      const clearBtn = document.getElementById('clearSuggestion');
+      const feedback = document.getElementById('suggestionFeedback');
+      const suggestionBox = document.getElementById('suggestionBox');
+
+      function loadSuggestions() {
+        try { return JSON.parse(localStorage.getItem('amaSuggestions') || '[]'); } catch (e) { return []; }
+      }
+
+      function saveSuggestion(s) {
+        const arr = loadSuggestions();
+        arr.push(s);
+        localStorage.setItem('amaSuggestions', JSON.stringify(arr));
+      }
+
+      submitBtn.addEventListener('click', function() {
+        const selected = document.querySelector('input[name="selectedDesign"]:checked');
+        const text = suggestionBox.value && suggestionBox.value.trim();
+        if (!selected) { feedback.textContent = 'Please select a design to comment on.'; feedback.classList.remove('text-green-700'); feedback.classList.add('text-red-600'); return; }
+        if (!text) { feedback.textContent = 'Please enter your suggestion before submitting.'; feedback.classList.remove('text-green-700'); feedback.classList.add('text-red-600'); return; }
+
+  // attach minimal user identity so teacher can map suggestions to students when available
+  const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+  const userId = currentUser.username || currentUser.email || currentUser.id || currentUser.name || 'anonymous';
+  const userName = currentUser.name || currentUser.email || currentUser.username || 'Anonymous Student';
+  const suggestion = { design: selected.value, text: text, ts: new Date().toISOString(), userId: userId, userName: userName };
+        try { saveSuggestion(suggestion); feedback.textContent = 'Thanks — your suggestion has been saved.'; feedback.classList.remove('text-red-600'); feedback.classList.add('text-green-700');
+          // update progress summary counter
+          try {
+            const summary = document.getElementById('progressSummary');
+            const count = loadSuggestions().length;
+            if (summary) summary.textContent = `You submitted ${count} suggestion${count === 1 ? '' : 's'} for Ama’s Challenge`;
+          } catch(e){}
+          suggestionBox.value = '';
+          const sel = document.querySelector('input[name="selectedDesign"]:checked'); if (sel) sel.checked = false;
+          // mark that the student viewed/submitted the suggestion and update overall progress
+          try { 
+            // record a persistent view/submission flag
+            let views = JSON.parse(localStorage.getItem('amaViews') || '{}');
+            views.suggestionSubmitted = (views.suggestionSubmitted || 0) + 1;
+            localStorage.setItem('amaViews', JSON.stringify(views));
+          } catch(e){}
+          try { if (typeof updateProgress === 'function') updateProgress('suggestion', 1); } catch(e){}
+        } catch (e) { feedback.textContent = 'Unable to save suggestion at this time.'; feedback.classList.remove('text-green-700'); feedback.classList.add('text-red-600'); }
+      });
+
+      clearBtn.addEventListener('click', function() { suggestionBox.value = ''; const sel = document.querySelector('input[name="selectedDesign"]:checked'); if (sel) sel.checked = false; feedback.textContent = ''; });
+
+      // Initialize summary count if suggestions exist
+      try { const cnt = loadSuggestions().length; const summary = document.getElementById('progressSummary'); if (summary && cnt > 0) summary.textContent = `You submitted ${cnt} suggestion${cnt === 1 ? '' : 's'} for Ama’s Challenge`; } catch(e){}
+    })();
+
+    // Export and undo handlers
+    (function() {
+      function loadSuggestions() { try { return JSON.parse(localStorage.getItem('amaSuggestions') || '[]'); } catch(e) { return []; } }
+      function saveSuggestions(arr) { localStorage.setItem('amaSuggestions', JSON.stringify(arr)); }
+
+      // Export suggestions as a readable TXT file
+      const exportBtn = document.getElementById('exportTxtBtn');
+      if (exportBtn) exportBtn.addEventListener('click', function() {
+        const arr = loadSuggestions();
+        if (!arr.length) return alert('No suggestions to export.');
+  const lines = arr.map((s, i) => `Suggestion ${i+1}\nStudent: ${s.userName || s.userId || 'Unknown'}\nUserId: ${s.userId || ''}\nDesign: ${s.design}\nTime: ${s.ts}\nText:\n${s.text}\n-----------------------\n`);
+        const content = lines.join('\n');
+        const blob = new Blob([content], { type: 'text/plain' });
+        const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'ama-suggestions.txt'; a.click();
+      });
+
+      const undoBtn = document.getElementById('undoSuggestionBtn');
+      if (undoBtn) undoBtn.addEventListener('click', function() {
+        let arr = loadSuggestions();
+        if (!arr.length) { alert('No suggestions to undo.'); return; }
+        // Remove last suggestion
+        const last = arr.pop();
+        saveSuggestions(arr);
+        // decrement views if present
+        try { let views = JSON.parse(localStorage.getItem('amaViews') || '{}'); if (views.suggestionSubmitted && views.suggestionSubmitted > 0) { views.suggestionSubmitted -= 1; localStorage.setItem('amaViews', JSON.stringify(views)); } } catch(e){}
+        // update progress: remove suggestion score
+        try { let prog = JSON.parse(localStorage.getItem('amaChallengeProgress') || '{}'); if (prog.suggestion) { delete prog.suggestion; localStorage.setItem('amaChallengeProgress', JSON.stringify(prog)); if (typeof updateProgress === 'function') updateProgress('suggestion', 0); } } catch(e){}
+        // update UI
+        try { const summary = document.getElementById('progressSummary'); const cnt = arr.length; if (summary) summary.textContent = cnt ? `You submitted ${cnt} suggestion${cnt === 1 ? '' : 's'} for Ama’s Challenge` : 'You scored 0% on Ama’s Challenge'; } catch(e){}
+        alert('Your last suggestion was removed.');
+      });
+    })();
+
+    // Offline assignment handlers
+    (function() {
+  const briefBtn = document.getElementById('downloadBriefPdf');
+      const markBtn = document.getElementById('markOfflineDone');
+      const status = document.getElementById('offlineStatus');
+
+      function getBriefText() {
+        return `Offline Assignment - Ama's Redesigns\n\nTask:\nCreate three redesigned packaging samples for Ama, addressing the briefs:\n- Fun: playful, energetic design for kids\n- Trust: natural, family-friendly design\n- Premium: elegant, sophisticated design for adults\n\nDeliverables:\n1) Three labeled images or scans (PDF/JPG/PNG)\n2) A short note (1-2 paragraphs) explaining the changes made for each design\n\nBring your files to class for teacher assessment.`;
+      }
+
+      if (briefBtn) briefBtn.addEventListener('click', function() {
+        const blob = new Blob([getBriefText()], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'ama-offline-brief.txt';
+        a.click();
+      });
+
+      markBtn.addEventListener('click', function() {
+        try {
+          let prog = JSON.parse(localStorage.getItem('amaChallengeProgress') || '{}');
+          prog.offline = 1;
+          localStorage.setItem('amaChallengeProgress', JSON.stringify(prog));
+          if (typeof updateProgress === 'function') updateProgress('offline', 1);
+          status.textContent = 'Offline assignment marked as done.';
+        } catch (e) {
+          alert('Unable to mark assignment as done.');
+        }
+      });
+
+      // Initialize status
+      try { const p = JSON.parse(localStorage.getItem('amaChallengeProgress') || '{}'); if (p.offline) status.textContent = 'Offline assignment completed.'; } catch(e){}
+    })();
+
+    // Reveal briefs when a design is clicked (accessible)
+    (function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        const container = document.querySelector('main');
+        const briefs = document.getElementById('designBriefs');
+        const hideBtn = document.getElementById('hideBriefs');
+
+        if (!container || !briefs) return;
+
+        function showBriefs(trigger) {
+          briefs.classList.remove('hidden');
+          briefs.setAttribute('aria-hidden', 'false');
+          // set aria-expanded on all design cards
+          container.querySelectorAll('.design-card').forEach(dc => dc.setAttribute('aria-expanded', dc === trigger ? 'true' : 'false'));
+          // move focus into briefs for keyboard users
+          const focusTarget = briefs.querySelector('button, [tabindex]');
+          if (focusTarget) focusTarget.focus();
+        }
+
+        function hideBriefs() {
+          briefs.classList.add('hidden');
+          briefs.setAttribute('aria-hidden', 'true');
+          container.querySelectorAll('.design-card').forEach(dc => dc.setAttribute('aria-expanded', 'false'));
+        }
+
+        // Event delegation: handle clicks on any .design-card inside the main container
+        container.addEventListener('click', function(e) {
+          const card = e.target.closest && e.target.closest('.design-card');
+          if (card) {
+            showBriefs(card);
+          }
+        });
+
+        // Keyboard handling: Enter/Space when a design-card is focused
+        container.addEventListener('keydown', function(e) {
+          const card = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('design-card') ? document.activeElement : null;
+          if (!card) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showBriefs(card);
+          }
+        });
+
+        // Hide button and Escape key
+        if (hideBtn) hideBtn.addEventListener('click', hideBriefs);
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && briefs && !briefs.classList.contains('hidden')) hideBriefs();
+        });
+      });
+    })();
+  </script>
+  
+</body>
+</html>

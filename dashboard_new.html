@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Visual Arts </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span>
+                        <a href="dashboard_Home.html"> <img src="IMAGES/LOGO.svg" alt="ArtKonekt Logo" class="h-10 w-auto" /></a>
+                    </span>
+                    <span class="ml-2 text-xl font-semibold text-gray-900">ArtKonekt</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                                 </div>
+                <div class="flex items-center">
+                    <div class="relative group">
+                        <button id="userDropdownBtn" class="flex items-center space-x-2 focus:outline-none" aria-label="Open user menu">
+                            <i data-feather="user" class="h-6 w-6 text-gray-700"></i>
+                            <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                            <span class="sr-only">Welcome, <span id="userName">User</span></span>
+                        </button>
+                        <div id="userDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="#" id="profileLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="#" id="settingsLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            <a href="group.html" id="groupLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Group</a>
+                        </div>
+                    </div>
+
+                    <!-- Nav menu button (hamburger) -->
+                    <div class="relative group ml-4">
+                        <button id="navMenuBtn" class="flex items-center space-x-1 focus:outline-none" aria-label="Open navigation menu">
+                            <i data-feather="menu" class="h-6 w-6 text-gray-700"></i>
+                        </button>
+                        <div id="navMenu" class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home</a>
+
+                            <a href="solve.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Solve</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Dashboard Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between">
+            <div>
+                <h1 id="welcomeHeadline" class="text-2xl font-bold text-gray-900">Welcome, <span id="welcomeName" class="text-indigo-600">User</span></h1>
+                <h2 class="text-xl font-semibold text-gray-900 mt-2">To Your Learning Dashboard</h2>
+                <p class="mt-2 text-gray-600">Track your progress through the Visual Arts  Lessons available to you here</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex-shrink-0">
+                <div class="bg-green-100 border border-green-300 rounded-lg px-6 py-3 flex items-center shadow-sm justify-end">
+                    <span class="text-sm text-gray-700 mr-2">Grade:</span>
+                    <span id="cumulativeAverage" class="text-2xl font-bold text-green-700">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex items-center">
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-indigo-600 h-2.5 rounded-full" id="mainProgressBar" style="width: 0%"></div>
+                </div>
+                <span class="ml-4 text-sm font-medium text-gray-700" id="mainProgressText">0% Complete</span>
+            </div>
+        </div>
+
+        <!-- Progress Summary -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Your Progress</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <i data-feather="book" class="h-6 w-6 text-indigo-600"></i>
+                        <span class="ml-2 text-sm font-medium text-gray-900">Lessons Completed</span>
+                    </div>
+                    <div class="mt-2">
+                            <span class="text-2xl font-bold text-indigo-600" id="lessonsCompleted">0</span>
+                            <span class="text-sm text-gray-500"> <span id="lessonsTotal">/ 15</span></span>
+                        </div>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="h-6 w-6 text-green-600"></i>
+                        <span class="ml-2 text-sm font-medium text-gray-900">Quiz Scores</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-2xl font-bold text-green-600" id="averageScore">0</span>
+                        <span class="text-sm text-gray-500">% average</span>
+                    </div>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center">
+                        <i data-feather="users" class="h-6 w-6 text-purple-600"></i>
+                        <span class="ml-2 text-sm font-medium text-gray-900">Group</span>
+                    </div>
+                    <div class="mt-2">
+                        <span class="text-xl font-bold text-purple-600" id="groupName">None</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Score Details -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Checkpoint Quiz Scores</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-indigo-50 p-4 rounded-lg flex items-center justify-between">
+                    <span class="font-medium text-gray-800">Elements & Principles of Design</span>
+                    <span class="text-xl font-bold text-indigo-700" id="score-elements">0</span>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg flex items-center justify-between">
+                    <span class="font-medium text-gray-800">Color Theory</span>
+                    <span class="text-xl font-bold text-yellow-600" id="score-color">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topics: show two main cards (Elements & Principles of Design, Color Theory) -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h3 id="continueOrStartTitle" class="text-lg font-medium text-gray-900 mb-4">Start or Continue a Topic</h3>
+            <div id="topicCards" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Filled dynamically by JS -->
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="bg-white shadow rounded-lg p-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Recent Activity</h3>
+            <div class="space-y-4" id="recentActivity">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="bg-indigo-100 p-2 rounded-full">
+                            <i data-feather="book" class="h-5 w-5 text-indigo-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-900">No recent activity yet</p>
+                        <p class="text-sm text-gray-500">Complete a lesson or quiz to see your progress here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br>
+        <!-- Your Assignments -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Your Assignments</h3>
+            <div id="userAssignments" class="text-gray-700">
+                <span>Loading assignments...</span>
+            </div>
+        </div>
+    <br>
+        <!-- Groupwork Assigned Section -->
+        <div class="bg-white shadow rounded-lg p-6 mb-8">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Groupwork Assigned</h3>
+            <div id="groupworkAssigned" class="text-gray-700">
+            <span>Loading groupwork...</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Consolidated JavaScript -->
+    <script>
+    // Consolidated dashboard JS: showGroupworkAssigned, init dashboard, utility functions
+    function showGroupworkAssigned() {
+        const groupworkDiv = document.getElementById('groupworkAssigned');
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (user && user.groupCode) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const groupMembers = users.filter(u => u.groupCode === user.groupCode && u.role === 'student');
+            const groupworkKey = 'groupwork_' + user.groupCode;
+            const groupwork = localStorage.getItem(groupworkKey) || 'No groupwork assigned yet.';
+
+            let quizAssignments = JSON.parse(localStorage.getItem('quizAssignments') || '[]');
+            let groupQuizzes = quizAssignments.filter(q => q.type === 'group' && (q.group && (q.group.toLowerCase() === user.groupCode.toLowerCase() || (user.groupName && q.group.toLowerCase() === user.groupName.toLowerCase()))) );
+
+            let quizzesHtml = '';
+            if (groupQuizzes.length > 0) {
+                quizzesHtml = `<div class="mt-2"><span class="font-semibold">Quizzes Assigned to Group:</span><ul class="list-disc pl-6">${groupQuizzes.map(q => `<li><span class='font-medium'>Quiz: </span><a href="solve.html?quiz=${encodeURIComponent(q.quizTitle)}" class="text-indigo-600 hover:underline">${q.quizTitle}</a></li>`).join('')}</ul></div>`;
+            }
+
+            groupworkDiv.innerHTML = `
+                <style>
+                .group-hover-info { display: none; position: static; background: transparent; color: #334155; border-radius: 0.25rem; padding: 0 0.25rem; box-shadow: none; white-space: nowrap; z-index: 10; margin-left: 0.25rem; font-size: 0.95em; }
+                .group-member-hover:hover .group-hover-info { display: inline; }
+                </style>
+                <div><span class="font-semibold">Group Code:</span> <span class="text-indigo-600">${user.groupCode}</span></div>
+                <div class="mt-2"><span class="font-semibold">Group Members:</span> <ul class="list-disc pl-6" id="groupMembersList">
+                ${groupMembers.map((m, i) => `<li class="relative group-member-hover" style="position:relative;"><span>${m.name}</span><span class="group-hover-info">&nbsp;(${m.email || 'N/A'})</span></li>`).join('')}
+                </ul></div>
+                <div class="mt-2"><span class="font-semibold">Groupwork:</span> <span>${groupwork}</span></div>
+                ${quizzesHtml}
+            `;
+        } else {
+            groupworkDiv.innerHTML = '<span class="text-gray-500">No groupwork assigned yet. Join a group to see groupwork here.</span>';
+        }
+    }
+
+    function renderUserAssignments() {
+        const container = document.getElementById('userAssignments');
+        container.innerHTML = '';
+        let currentUser = null;
+        try { currentUser = JSON.parse(localStorage.getItem('currentUser')); } catch (e) { currentUser = null; }
+        if (!currentUser) {
+            container.innerHTML = '<div class="text-sm text-gray-500">Sign in to see your assignments.</div>';
+            return;
+        }
+
+        // Individual quizzes assigned to this user
+        const quizAssignments = JSON.parse(localStorage.getItem('quizAssignments') || '[]');
+        const assignedToUser = quizAssignments.filter(q => q.type === 'student' && q.assignedTo === currentUser.email);
+        const assignedToGroup = quizAssignments.filter(q => q.type === 'group' && currentUser.groupCode && (q.group && (q.group.toLowerCase() === currentUser.groupCode.toLowerCase() || (currentUser.groupName && q.group.toLowerCase() === currentUser.groupName.toLowerCase()))));
+
+        function mapQuizTitleToUrl(quizTitle) {
+            if (!quizTitle) return '';
+            const t = quizTitle.toLowerCase();
+            if (t.includes('color') || t.includes('colour')) return 'color-theory-quiz.html';
+            if (t.includes('element') || t.includes('elements')) return 'elements-quiz.html';
+            return 'solve.html?quiz=' + encodeURIComponent(quizTitle);
+        }
+
+        let html = '';
+        if (assignedToUser.length === 0 && assignedToGroup.length === 0) {
+            html += '<div class="text-sm text-gray-500">No quizzes assigned to you or your group.</div>';
+        } else {
+            if (assignedToUser.length > 0) {
+                html += '<div class="mb-2"><strong>Quizzes assigned to you:</strong><ul class="list-disc pl-6">' + assignedToUser.map(q => {
+                    const link = q.link || mapQuizTitleToUrl(q.quizTitle);
+                    return `<li>${q.quizTitle} ${link ? `<a class="text-indigo-600 ml-2" href="${link}">Open</a>` : ''}</li>`;
+                }).join('') + '</ul></div>';
+            }
+            if (assignedToGroup.length > 0) {
+                html += '<div class="mb-2"><strong>Quizzes assigned to your group:</strong><ul class="list-disc pl-6">' + assignedToGroup.map(q => {
+                    const link = q.link || mapQuizTitleToUrl(q.quizTitle);
+                    return `<li>${q.quizTitle} ${link ? `<a class="text-indigo-600 ml-2" href="${link}">Open</a>` : ''}</li>`;
+                }).join('') + '</ul></div>';
+            }
+        }
+
+        // Groupwork for user's group
+        if (currentUser.groupCode) {
+            const groupworkKey = 'groupwork_' + currentUser.groupCode;
+            const groupwork = localStorage.getItem(groupworkKey);
+            if (groupwork) {
+                html += `<div class="mt-3"><strong>Groupwork for ${currentUser.groupCode}:</strong><div class="mt-1 text-sm text-gray-700">${groupwork}</div></div>`;
+            }
+        }
+
+        container.innerHTML = html;
+    }
+
+    function getLessonName(lessonId) {
+        const map = {
+            
+            'principle-balance': 'Balance ',
+            'principle-harmony': ' Harmony',
+            'lesson2': 'Emphasis in Design',
+            'lesson3': 'Form, Line & Shape',
+            'Tntroelement-intro-1': 'Introduction to Elements of Design',
+            'element-texture': 'Element — Texture',
+            'element-shape': 'Element — Shape',
+            'element-color': 'Element — Color',
+            'element-value': 'Element — Value',
+            'element-rythm': 'Element — Rhythm',
+            'principles-intro-1': 'Principles — Intro',
+            'principlee-intro': 'Principles — Intro',
+            'principle-whitespace-1': 'Principle — White Space',
+            'principle-rhythm': 'Principle — Rhythm',
+            'color-intro-1': 'Color — Intro',
+            'color-contemporary-1': 'Color — Complementary',
+            'color-analogous-1': 'Color — Analogous',
+            'color-triadic-1': 'Color — Triadic',
+            'color-mood-1': 'Color — Mood',
+            'color-wheel-1': 'Color — 12-Color Wheel'
+        };
+        return map[lessonId] || lessonId || 'Lesson';
+    }
+
+    // Normalize lesson id to the same format used when marking lessons complete
+    function normalizeLessonId(id) {
+        if (!id) return '';
+        return id.toString().toLowerCase().replace(/\.[^.]+$/,'').replace(/[^a-z0-9]+/g,'-');
+    }
+
+    function updateLessonProgress(lessonId, isCompleted) {
+        const nid = normalizeLessonId(lessonId);
+        const progressBar = document.getElementById(`${nid}Progress`);
+        const percentText = document.getElementById(`${nid}Percent`);
+        if (progressBar && percentText) {
+            if (isCompleted) {
+                progressBar.style.width = '100%';
+                percentText.textContent = '100%';
+            } else {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                if (currentUser && currentUser.progress && currentUser.progress.quizScores && typeof currentUser.progress.quizScores[lessonId] !== 'undefined') {
+                    let val = Number(currentUser.progress.quizScores[lessonId]) || 0;
+                    val = Math.max(0, Math.min(100, val));
+                    progressBar.style.width = val + '%';
+                    percentText.textContent = val + '%';
+                } else {
+                    progressBar.style.width = '0%';
+                    percentText.textContent = '0%';
+                }
+            }
+        }
+    }
+
+    function loadRecentActivity(progress) {
+        const activityContainer = document.getElementById('recentActivity');
+        activityContainer.innerHTML = '';
+        // Add quiz completions
+        for (const [lessonId, score] of Object.entries(progress.quizScores || {})) {
+            const lessonName = getLessonName(lessonId);
+            const activityItem = document.createElement('div');
+            activityItem.className = 'flex items-start';
+            activityItem.innerHTML = `
+                <div class="flex-shrink-0">
+                    <div class="bg-green-100 p-2 rounded-full">
+                        <i data-feather="check-circle" class="h-5 w-5 text-green-600"></i>
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900">Completed quiz for ${lessonName}</p>
+                    <p class="text-sm text-gray-500">Score: ${score}%</p>
+                </div>
+            `;
+            activityContainer.appendChild(activityItem);
+        }
+        // Add lesson completions
+        for (const lessonId of (progress.lessonsCompleted || [])) {
+            const lessonName = getLessonName(lessonId);
+            const activityItem = document.createElement('div');
+            activityItem.className = 'flex items-start';
+            activityItem.innerHTML = `
+                <div class="flex-shrink-0">
+                    <div class="bg-indigo-100 p-2 rounded-full">
+                        <i data-feather="book" class="h-5 w-5 text-indigo-600"></i>
+                    </div>
+                </div>
+                <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900">Completed ${lessonName}</p>
+                    <p class="text-sm text-gray-500">Well done!</p>
+                </div>
+            `;
+            activityContainer.appendChild(activityItem);
+        }
+        // If no activity
+        if (activityContainer.children.length === 0) {
+            activityContainer.innerHTML = `
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="bg-indigo-100 p-2 rounded-full">
+                            <i data-feather="book" class="h-5 w-5 text-indigo-600"></i>
+                        </div>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-gray-900">No recent activity yet</p>
+                        <p class="text-sm text-gray-500">Complete a lesson or quiz to see your progress here</p>
+                    </div>
+                </div>
+            `;
+        }
+        feather.replace();
+    }
+
+    // Init dashboard when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        feather.replace();
+        showGroupworkAssigned();
+
+        let currentUser = null;
+        try {
+            currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        } catch (e) {
+            currentUser = null;
+        }
+        if (!currentUser || typeof currentUser !== 'object') {
+            document.body.innerHTML = '<div class="flex flex-col items-center justify-center min-h-screen"><h1 class="text-2xl font-bold text-red-600 mb-4">You are not signed in.</h1><a href="login.html" class="bg-indigo-600 text-white px-6 py-3 rounded font-semibold">Go to Login</a></div>';
+            return;
+        }
+
+        // Display user info
+        var displayName = (currentUser.name && typeof currentUser.name === 'string') ? currentUser.name.split(' ')[0] : 'User';
+        document.getElementById('userName').textContent = displayName;
+        var welcomeNameEl = document.getElementById('welcomeName');
+        if (welcomeNameEl) {
+            welcomeNameEl.textContent = displayName;
+        }
+        if (currentUser.groupCode) {
+            document.getElementById('groupName').textContent = currentUser.groupCode;
+        }
+
+        // render user assignments panel
+        try { renderUserAssignments(); } catch (e) {}
+
+        // Show Groups link only for students
+
+        // Listen for lesson completion events (cross-tab via storage and in-page via CustomEvent)
+        function refreshProgressUI() {
+            try {
+                const cu = JSON.parse(localStorage.getItem('currentUser') || 'null');
+                const lessons = (cu && cu.progress && Array.isArray(cu.progress.lessonsCompleted)) ? cu.progress.lessonsCompleted : [];
+                // dedupe completed lessons and normalize ids
+                const uniqueCompleted = Array.from(new Set((lessons || []).map(normalizeLessonId))).filter(Boolean);
+                document.getElementById('lessonsCompleted').textContent = uniqueCompleted.length;
+                // update main progress: calculate percent as unique lessons completed / lessonsTotal
+                const total = parseInt(document.getElementById('lessonsTotal').textContent.replace('/','').trim()) || 0;
+                let pct = total > 0 ? Math.round((uniqueCompleted.length / total) * 100) : 0;
+                pct = Math.max(0, Math.min(100, pct));
+                document.getElementById('mainProgressBar').style.width = pct + '%';
+                document.getElementById('mainProgressText').textContent = pct + '% Complete';
+                // update recent activity
+                if (cu && cu.progress) loadRecentActivity(cu.progress);
+            } catch(e) { console.error(e); }
+        }
+
+        window.addEventListener('lessonCompleted', function(e) { refreshProgressUI(); });
+        // Refresh progress when localStorage changes in other tabs/windows. Also be resilient
+        // and refresh on any storage change to avoid missing custom key names.
+        window.addEventListener('storage', function(e) {
+            try { refreshProgressUI(); } catch (err) { console.error(err); }
+        });
+
+        // Fallback polling: some environments or race conditions may not emit storage events
+        // reliably across contexts. Poll every 5 seconds to ensure the dashboard stays in sync.
+        let __lastLessonProgressUpdate = localStorage.getItem('lessonProgressUpdated');
+        let __lastCurrentUser = localStorage.getItem('currentUser');
+        setInterval(function() {
+            try {
+                const cur = localStorage.getItem('lessonProgressUpdated');
+                if (cur !== __lastLessonProgressUpdate) {
+                    __lastLessonProgressUpdate = cur;
+                    try { refreshProgressUI(); } catch(e) { console.error(e); }
+                    return;
+                }
+                // Also watch for direct writes to currentUser (some pages update currentUser without setting lessonProgressUpdated)
+                const cu = localStorage.getItem('currentUser');
+                if (cu !== __lastCurrentUser) {
+                    __lastCurrentUser = cu;
+                    try { refreshProgressUI(); } catch(e) { console.error(e); }
+                }
+            } catch(e) { console.error('dashboard polling error', e); }
+        }, 3000);
+        // initial render
+        refreshProgressUI();
+        try {
+            const user = currentUser;
+            if (user && user.role === 'student') {
+                document.getElementById('groupsNavLink').innerHTML = '<a href="group.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Groups</a>';
+            }
+        } catch (e) {}
+
+        // Calculate and display progress
+        const progress = currentUser.progress || { lessonsCompleted: [], quizScores: {} };
+        if (!progress.lessonsCompleted) progress.lessonsCompleted = [];
+        if (!progress.quizScores) progress.quizScores = {};
+        // normalize and dedupe stored lesson ids so dashboard logic is consistent
+        const normalizedStored = Array.from(new Set((progress.lessonsCompleted || []).map(normalizeLessonId).filter(Boolean)));
+        if (JSON.stringify(normalizedStored) !== JSON.stringify(progress.lessonsCompleted)) {
+            // persist normalized list back to currentUser to avoid future inconsistencies
+            progress.lessonsCompleted = normalizedStored;
+            try {
+                if (window.saveCurrentUser && typeof window.saveCurrentUser === 'function') {
+                    currentUser.progress = progress;
+                    window.saveCurrentUser(currentUser);
+                } else {
+                    // fallback: write directly
+                    currentUser.progress = progress;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                }
+            } catch(e) { console.error('failed to persist normalized lesson ids', e); }
+        }
+        const lessonsCompleted = (progress.lessonsCompleted || []).map(normalizeLessonId).filter(Boolean).length;
+        document.getElementById('lessonsCompleted').textContent = lessonsCompleted;
+        // compute total lessons from topics used by renderTopicCards (dedupe normalized ids)
+        const allTopics = [
+            ['element-intro-1','principles-intro-1','lesson1','lesson2','principle-rhythm','principle-whitespace-1','element-texture-1','element-shape-1','element-value-1','element-color-1','element-rythm-1'],
+            ['color-intro-1','color-contemporary-1','color-analogous-1','color-triadic-1','color-mood-1','color-wheel-1']
+        ];
+        const flat = allTopics.flat();
+        const deduped = Array.from(new Set(flat.map(normalizeLessonId).filter(Boolean)));
+    const totalLessons = deduped.length || 15; // fallback to 15 if something goes wrong
+        const lessonsTotalEl = document.getElementById('lessonsTotal');
+        if (lessonsTotalEl) lessonsTotalEl.textContent = `/ ${totalLessons}`;
+        let percent = totalLessons > 0 ? Math.round((Math.min(lessonsCompleted, totalLessons) / totalLessons) * 100) : 0;
+        percent = Math.max(0, Math.min(100, percent));
+        document.getElementById('mainProgressBar').style.width = percent + '%';
+        document.getElementById('mainProgressText').textContent = percent + '% Complete';
+
+        // Update progress bars for any lesson progress widgets present on the page
+    const allLessonIds = deduped || ['element-intro-1','principles-intro-1','lesson1','lesson2','principle-rhythm','principle-whitespace-1','element-texture-1','element-shape-1','element-value-1','element-color-1','element-rythm-1','color-intro-1','color-contemporary-1','color-analogous-1','color-triadic-1','color-mood-1','color-wheel-1'];
+        allLessonIds.forEach(lid => {
+            try { updateLessonProgress(lid, (progress.lessonsCompleted || []).map(normalizeLessonId).includes(normalizeLessonId(lid))); } catch (e) {}
+        });
+
+    const userQuizScores = (currentUser.progress && currentUser.progress.quizScores) ? currentUser.progress.quizScores : {};
+    document.getElementById('score-elements').textContent = userQuizScores['elements'] || 0;
+    document.getElementById('score-color').textContent = userQuizScores['color'] || 0;
+
+        // Calculate cumulative average as (sum of all quiz scores + checkpoint quiz scores) / 400 * 100
+        let allScoresArr = [];
+        if (progress.quizScores) {
+            allScoresArr = allScoresArr.concat(Object.values(progress.quizScores).map(s => Number(s) || 0));
+        }
+        if (progress.challengeScores) {
+            allScoresArr = allScoresArr.concat(Object.values(progress.challengeScores).map(s => Number(s) || 0));
+        }
+        let checkpointTotal = 0;
+        if (userQuizScores['elements']) checkpointTotal += Number(userQuizScores['elements']) || 0;
+        if (userQuizScores['color']) checkpointTotal += Number(userQuizScores['color']) || 0;
+        const totalPoints = allScoresArr.reduce((a, b) => a + b, 0) + checkpointTotal;
+        // Avoid division by zero; assume max total is 400. If no scores, cumulative average should be 0.
+        const cumulativeAvg = totalPoints > 0 ? Math.round((totalPoints / 400) * 100) : 0;
+        document.getElementById('averageScore').textContent = cumulativeAvg;
+        const cumulativeAverage = document.getElementById('cumulativeAverage');
+        if (cumulativeAverage) {
+            cumulativeAverage.textContent = cumulativeAvg + '%';
+        }
+
+        const continueOrStartTitle = document.getElementById('continueOrStartTitle');
+        if (lessonsCompleted === 0) {
+            continueOrStartTitle.textContent = 'Start Lesson';
+        } else {
+            continueOrStartTitle.textContent = 'Continue Learning';
+        }
+
+        loadRecentActivity(progress);
+
+    // Render two-topic layout (Elements & Color) with their lessons
+    try { renderTopicCards(currentUser); } catch (e) {}
+
+        // Dropdown menu logic for user menu and nav menu
+        const userDropdownBtnEl = document.getElementById('userDropdownBtn');
+        const userDropdownMenuEl = document.getElementById('userDropdownMenu');
+        const navMenuBtnEl = document.getElementById('navMenuBtn');
+        const navMenuEl = document.getElementById('navMenu');
+
+        document.addEventListener('click', function(event) {
+            // user menu
+            if (userDropdownBtnEl && userDropdownBtnEl.contains(event.target)) {
+                userDropdownMenuEl.classList.toggle('hidden');
+            } else if (userDropdownMenuEl && !userDropdownMenuEl.contains(event.target)) {
+                userDropdownMenuEl.classList.add('hidden');
+            }
+
+            // nav menu
+            if (navMenuBtnEl && navMenuBtnEl.contains(event.target)) {
+                navMenuEl.classList.toggle('hidden');
+            } else if (navMenuEl && !navMenuEl.contains(event.target)) {
+                navMenuEl.classList.add('hidden');
+            }
+        });
+
+        // Profile and Settings links (demo: alert or redirect)
+        const profileLinkEl = document.getElementById('profileLink');
+        const settingsLinkEl = document.getElementById('settingsLink');
+        const logoutBtnEl = document.getElementById('logoutBtn');
+        if (profileLinkEl) profileLinkEl.addEventListener('click', function(e) { e.preventDefault(); alert('Profile page coming soon!'); });
+        if (settingsLinkEl) settingsLinkEl.addEventListener('click', function(e) { e.preventDefault(); alert('Settings page coming soon!'); });
+        if (logoutBtnEl) logoutBtnEl.addEventListener('click', function(e) { e.preventDefault(); localStorage.removeItem('currentUser'); localStorage.removeItem('userRole'); window.location.href = 'login.html'; });
+
+    });
+
+    // Render the two main topic cards and their lessons
+    function renderTopicCards(currentUser) {
+        const topics = [
+            {
+                id: 'elements',
+                title: 'Elements & Principles of Design',
+                lessons: [
+                    { id: 'element-intro-1', title: 'Introdution to Elements of Design', href: 'Element-Intro_1.html' },
+                    { id: 'principles-intro-1', title: 'Introduction to Principles of Design', href: 'Principles_Intro_1.html' },
+                    { id: 'Principle-balance', title: 'Balance', href: 'Principle-balance.html' },
+                    { id: 'Principle-Emphasis', title: 'Emphasis', href: 'Principle-Emphasis.html' },
+                    { id: 'principle-rhythm', title: 'Rhythm', href: 'Principle-Rhythm.html' },
+                    { id: 'Element-WhiteSpace_1', title: 'White Space', href: 'Element-WhiteSpace_1.html' },
+                    { id: 'element-texture-1', title: 'Texture', href: 'Element-Texture_1.html' },
+                    { id: 'element-shape-1', title: 'Shape', href: 'Element-Shape_1.html' },
+                    { id: 'element-value-1', title: 'Value', href: 'Element-Value_1.html' },
+                   
+                    
+                ],
+                color: 'indigo'
+            },
+            {
+                id: 'color',
+                title: 'Color Theory',
+                lessons: [
+                    { id: 'color-intro-1', title: 'Color — Intro', href: 'Color-Intro_1.html' },
+                    { id: 'color-contemporary-1', title: 'Complementary Colors', href: 'Color-Contemporary_1.html' },
+                    { id: 'color-analogous-1', title: 'Analogous Colors', href: 'Color-Analogous_1.html' },
+                    { id: 'color-triadic-1', title: 'Triadic Colors', href: 'Color-Triadic_1.html' },
+                    { id: 'color-mood-1', title: 'Color Mood', href: 'Color-Mood_1.html' },
+                    { id: 'color-wheel-1', title: '12-Color Wheel', href: 'Color-Wheel_1.html' }
+                ],
+                color: 'yellow'
+            }
+        ];
+
+        const container = document.getElementById('topicCards');
+        container.innerHTML = '';
+        const progress = currentUser.progress || { lessonsCompleted: [], quizScores: {} };
+
+        topics.forEach((topic, tIndex) => {
+            const topicDiv = document.createElement('div');
+            topicDiv.className = 'border border-gray-200 rounded-lg overflow-hidden';
+            // Calculate topic-level progress (average of lesson percents)
+            // Normalize lesson ids and dedupe to avoid double-counting
+            const normalizedLessons = topic.lessons.map(l => ({ ...l, nid: normalizeLessonId(l.id) })).filter(l => l.nid);
+            const uniqueLessons = Array.from(new Map(normalizedLessons.map(l => [l.nid, l])).values());
+            const lessonPercents = uniqueLessons.map(lesson => {
+                const completed = progress.lessonsCompleted && progress.lessonsCompleted.map(normalizeLessonId).includes(lesson.nid);
+                let lessonPercent = 0;
+                // Only use per-lesson quiz scores (by lesson.id). Do NOT apply topic/checkpoint scores to individual lessons.
+                if (progress.quizScores && typeof progress.quizScores[lesson.id] !== 'undefined') {
+                    lessonPercent = Number(progress.quizScores[lesson.id]) || 0;
+                } else if (completed) {
+                    lessonPercent = 100;
+                }
+                lessonPercent = Math.max(0, Math.min(100, Number(lessonPercent)));
+                return lessonPercent;
+            });
+            let topicPercent = lessonPercents.length ? Math.round(lessonPercents.reduce((a,b) => a+b,0) / lessonPercents.length) : 0;
+            topicPercent = Math.max(0, Math.min(100, topicPercent));
+
+            // Header (clickable to toggle)
+            const header = document.createElement('button');
+            header.type = 'button';
+            header.className = 'w-full flex items-center justify-between p-4 bg-white';
+            header.innerHTML = `
+                <div>
+                    <h4 class="text-lg font-medium text-gray-900">${topic.title}</h4>
+                    <p class="text-sm text-gray-500 mt-1">${uniqueLessons.length} lesson${uniqueLessons.length>1?'s':''} under this topic</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden md:block text-sm text-gray-600">${topicPercent}%</div>
+                    <svg class="h-5 w-5 text-gray-500 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            `;
+
+            // Body: topic progress bar and collapsible lesson list
+            const body = document.createElement('div');
+            body.className = 'bg-gray-50 p-4 border-t border-gray-100';
+            body.innerHTML = `
+                <div class="mb-3">
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div class="h-2 rounded-full topic-progress-bar" style="width: ${topicPercent}%"></div>
+                    </div>
+                    <div class="mt-2 flex justify-between text-xs text-gray-500">
+                        <span>Topic progress</span>
+                        <span>${topicPercent}%</span>
+                    </div>
+                </div>
+                <ul class="space-y-3 topic-lesson-list hidden">
+                </ul>
+            `;
+
+            // apply color class to the topic progress bar (Tailwind classes must be static in markup)
+            const colorClass = topic.color === 'yellow' ? 'bg-yellow-600' : (topic.color === 'indigo' ? 'bg-indigo-600' : 'bg-indigo-600');
+            // small timeout to ensure element exists in DOM fragment
+            const tempProg = body.querySelector('.topic-progress-bar');
+            if (tempProg) tempProg.classList.add(colorClass);
+
+            // Populate lessons into the list
+            const lessonList = body.querySelector('.topic-lesson-list');
+                uniqueLessons.forEach(lesson => {
+                const completed = progress.lessonsCompleted && progress.lessonsCompleted.map(normalizeLessonId).includes(lesson.nid);
+                let lessonPercent = 0;
+                if (progress.quizScores && typeof progress.quizScores[lesson.id] !== 'undefined') {
+                    lessonPercent = Number(progress.quizScores[lesson.id]) || 0;
+                } else if (completed) {
+                    lessonPercent = 100;
+                }
+                lessonPercent = Math.max(0, Math.min(100, Number(lessonPercent)));
+                const actionLabel = lessonPercent >= 100 ? 'Completed' : (lessonPercent > 0 ? 'Continue' : 'Start');
+                const actionClass = lessonPercent >= 100 ? 'bg-green-100 text-green-700 border border-green-200' : 'bg-white border border-gray-300 text-gray-800';
+
+                const li = document.createElement('li');
+                li.className = 'border p-3 rounded bg-white';
+                li.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="text-sm font-medium text-gray-900">${lesson.title}</div>
+                            <div class="text-xs text-gray-500">${lesson.id}</div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="${lesson.href}" class="px-3 py-1 rounded text-sm ${actionClass}">${actionLabel}</a>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-indigo-600 h-2 rounded-full" style="width: ${lessonPercent}%"></div>
+                        </div>
+                        <div class="mt-1 flex justify-between text-xs text-gray-500">
+                            <span>Progress</span>
+                            <span>${lessonPercent}%</span>
+                        </div>
+                    </div>
+                `;
+                lessonList.appendChild(li);
+            });
+
+            // By default collapsed — only header visible; the .topic-lesson-list has 'hidden' class
+            // Toggle expand/collapse on header click — show/hide the lesson list (Tailwind hidden class)
+            header.addEventListener('click', function() {
+                const list = body.querySelector('.topic-lesson-list');
+                const svg = header.querySelector('svg');
+                if (list) {
+                    const isHidden = list.classList.contains('hidden');
+                    if (isHidden) {
+                        list.classList.remove('hidden');
+                        if (svg) svg.style.transform = 'rotate(180deg)';
+                    } else {
+                        list.classList.add('hidden');
+                        if (svg) svg.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+
+            topicDiv.appendChild(header);
+            topicDiv.appendChild(body);
+            container.appendChild(topicDiv);
+        });
+    }
+    </script>
+</body>
+</html>

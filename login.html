@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Visual Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="assets/js/save-current-user.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    
+
+    <!-- Login Form Centered -->
+    <main class="flex-1 flex flex-col justify-center items-center">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 mt-8">
+            <div class="flex flex-col items-center mb-6">
+                <i data-feather="user" class="h-12 w-12 text-indigo-600"></i>
+                <h2 class="mt-4 text-2xl font-bold text-gray-900">Sign in to Visual Arts</h2>
+            </div>
+            <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="role" class="block text-sm font-medium text-gray-700">Log in as</label>
+                <select id="role" name="role" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+            </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email or Phone</label>
+                    <input id="email" name="email" type="text" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700">Sign in</button>
+            </form>
+            <div class="mt-6 text-center">
+                <span class="text-sm text-gray-600">Don't have an account?</span>
+                <a href="signup.html" class="ml-1 text-indigo-600 hover:text-indigo-500 font-medium">Sign up</a>
+            </div>
+        </div>
+    </main>
+    <br><br>
+
+
+   <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        
+    </footer>
+    <script>
+    feather.replace();
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const emailOrPhone = document.getElementById('email').value.trim();
+        let groupCode = '';
+        const groupCodeInput = document.getElementById('groupCode');
+        if (groupCodeInput) groupCode = groupCodeInput.value.trim();
+        const password = document.getElementById('password').value;
+        const selectedRole = document.getElementById('role').value;
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const user = users.find(u => ((u.email && u.email === emailOrPhone) || (u.contact && u.contact === emailOrPhone)) && u.password === password && u.role === selectedRole);
+        if (user) {
+            // On login, ensure the user has a progress object and merge with any stored currentUser progress
+            let usersArr = users;
+            let storedUser = JSON.parse(localStorage.getItem('currentUser'));
+            // Ensure default progress shape so new users start with zeros
+            user.progress = user.progress || { lessonsCompleted: [], quizScores: {}, solveActivities: {}, challengeScores: {} };
+            if (storedUser && ((storedUser.email && storedUser.email === user.email) || (storedUser.contact && storedUser.contact === user.contact))) {
+                // Merge progress if storedUser has progress (preserve newer keys)
+                if (storedUser.progress) {
+                    user.progress = Object.assign({ lessonsCompleted: [], quizScores: {}, solveActivities: {}, challengeScores: {} }, user.progress, storedUser.progress);
+                }
+            }
+            // Only update groupCode if provided and user is a student
+            if (groupCode && user.role === 'student') {
+                user.groupCode = groupCode;
+                // Also update in users array
+                const idx = usersArr.findIndex(u => u.id === user.id);
+                if (idx !== -1) {
+                    usersArr[idx].groupCode = groupCode;
+                }
+                localStorage.setItem('users', JSON.stringify(usersArr));
+            }
+            // Save updated user back to users array
+            const userIndex = usersArr.findIndex(u => ((u.email && u.email === user.email) || (u.contact && u.contact === user.contact)) && u.role === user.role);
+            if (userIndex !== -1) {
+                usersArr[userIndex] = user;
+                localStorage.setItem('users', JSON.stringify(usersArr));
+            }
+            try { if (window.saveCurrentUser) saveCurrentUser(user); else localStorage.setItem('currentUser', JSON.stringify(user)); } catch (e) { localStorage.setItem('currentUser', JSON.stringify(user)); }
+            if (user.role === 'teacher') {
+                window.location.href = 'teacher-dashboard.html';
+            } else {
+                window.location.href = 'dashboard_new.html';
+            }
+        } else {
+            alert('Invalid email/phone, password, or role.');
+        }
+    });
+    </script>
+</body>
+</html>

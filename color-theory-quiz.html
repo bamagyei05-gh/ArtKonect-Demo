@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Theory  Quiz</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+            <div class="flex items-center">
+                <i data-feather="palette" class="text-indigo-600"></i>
+                <span class="ml-2 text-xl font-semibold text-gray-900">Visual Arts</span>
+            </div>
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Home</a>
+                <a href="learn.html" class="text-indigo-600 border-b-2 border-indigo-600 px-3 py-2 text-sm font-medium">Learn</a>
+                <a href="dashboard_new.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Dashboard</a>
+            </div>
+        </nav>
+    </header>
+    <main class="max-w-3xl mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold mb-4 text-yellow-700">Color Theory  Assessment</h1>
+        <p class="mb-6 text-lg text-gray-700">Answer all 30 multiple-choice questions below. Good luck!</p>
+        <form id="colorTheoryQuiz">
+            <!-- 30 MCQ questions will be inserted here -->
+        </form>
+        <button id="submitColorQuiz" class="mt-8 bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 rounded font-semibold">Submit Quiz</button>
+        <div id="colorQuizResult" class="mt-6 text-lg font-bold"></div>
+    </main>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>feather.replace();</script>
+    <script src="assets/js/save-current-user.js"></script>
+    <script>
+    // Colour Theory Quiz Questions (updated to include new lessons: Analogous, Triadic, Mood, Contemporary/Complementary, 12-color Wheel)
+    const questions = [
+        { q: "Which scheme uses colours that are next to each other on the colour wheel (see the Analogous lesson)?", options: ["Complementary", "Analogous", "Triadic", "Monochromatic"], answer: 1 },
+        { q: "Which three colours form a triadic scheme (evenly spaced) e.g., a common example is:", options: ["Red, Yellow, Blue", "Red, Green, Blue", "Red, Red-Orange, Orange", "Yellow, Yellow-Green, Green"], answer: 0 },
+        { q: "Which colour is often used to evoke calmness and is discussed in the Mood lesson?", options: ["Red", "Blue", "Orange", "Yellow"], answer: 1 },
+        { q: "What do we call colours placed directly opposite each other on the colour wheel (Contemporary/Complementary lesson)?", options: ["Analogous", "Complementary", "Split-complementary", "Triadic"], answer: 1 },
+        { q: "How many main hues are typically shown on a standard 12-color wheel?", options: ["8", "10", "12", "24"], answer: 2 },
+        { q: "What is a tint (discussed in color mixing)?", options: ["A hue mixed with black", "A hue mixed with white", "A hue mixed with grey", "A hue mixed with its complement"], answer: 1 },
+        { q: "Which colour family is usually associated with growth and nature?", options: ["Blue family", "Green family", "Red family", "Purple family"], answer: 1 },
+        { q: "Which scheme creates the strongest contrast?", options: ["Analogous", "Complementary", "Monochromatic", "Triadic"], answer: 1 },
+        { q: "The split-complementary scheme uses:", options: ["A base colour and two colours adjacent to its complement", "Three colours equally spaced", "One colour with tints and shades", "Only warm colours"], answer: 0 },
+        { q: "Which of the following best explains why artists use the colour wheel?", options: ["To arrange hues and find harmonious combinations", "To store paint tubes", "To measure light intensity", "To define line thickness"], answer: 0 },
+
+        { q: "Which colour would typically be chosen to create excitement or urgency?", options: ["Blue", "Yellow", "Red", "Green"], answer: 2 },
+        { q: "Which colour is commonly linked to luxury and royalty?", options: ["Orange", "Purple", "Brown", "Grey"], answer: 1 },
+        { q: "What is the difference between a tint and a shade?", options: ["Tint adds black, shade adds white", "Tint adds white, shade adds black", "Both are the same", "Tint adds grey, shade adds hue"], answer: 1 },
+        { q: "Which term describes using different values of the same hue?", options: ["Analogous", "Complementary", "Monochromatic", "Split-complementary"], answer: 2 },
+        { q: "Which of the following is NOT produced by mixing pigments?", options: ["New hues", "Tints and shades", "White light spectrum", "Muted tones"], answer: 2 },
+
+        { q: "Which colour pair would likely produce the most visual tension?", options: ["Blue & Green", "Red & Green", "Yellow & Orange", "Blue & Purple"], answer: 1 },
+        { q: "Which psychological effect is often associated with cool colours?", options: ["Energy and warmth", "Calm and serenity", "Aggression", "Hunger"], answer: 1 },
+        { q: "Which of the following is a natural source of pigment?", options: ["Plastics", "Minerals", "LEDs", "Neon lights"], answer: 1 },
+        { q: "Which strategy helps create harmony when designing with colour?", options: ["Use complementary contrasts only", "Use analogous families or controlled contrasts", "Use random hues", "Avoid value changes"], answer: 1 },
+        { q: "Which of the following best describes a contemporary approach to complementary colours?", options: ["Always use pure complements at full saturation", "Use desaturated complements or split-complements for modern palettes", "Avoid complements entirely", "Use complements only in monochrome"], answer: 1 },
+
+        { q: "Which colour wheel segment would you use to select warm accents?", options: ["Reds and Oranges", "Blues and Greens", "Violets and Blues", "Greys and Browns"], answer: 0 },
+        { q: "Which colour is most commonly associated with safety or permission (e.g., 'go')?", options: ["Red", "Green", "Yellow", "Blue"], answer: 1 },
+        { q: "When designing for legibility on coloured backgrounds, which factor is most important?", options: ["Texture", "Value/contrast", "Hue only", "Saturation only"], answer: 1 },
+        { q: "Which approach is best when creating a calm, harmonious palette?", options: ["High saturation complements", "Analogous low-contrast values", "Random bright hues", "Strong complementary contrast"], answer: 1 },
+        { q: "Which of these tools helps artists mix predictable intermediate hues?", options: ["12-color wheel", "Random mixing", "Digital randomness", "Only primary pigments"], answer: 0 },
+
+        { q: "Which colour is perceived as neutral in many contexts?", options: ["White or Grey", "Bright Red", "Neon Green", "Cyan"], answer: 0 },
+        { q: "Which is an example of a triadic harmony on the 12-color wheel?", options: ["Red, Yellow, Blue", "Red, Orange, Yellow", "Blue, Green, Yellow", "Red, Purple, Blue"], answer: 0 },
+        { q: "Which concept helps designers create moods from colour choices?", options: ["Value, hue, and saturation control", "Only texture", "Only form", "Only line"], answer: 0 }
+    ];
+    const form = document.getElementById('colorTheoryQuiz');
+    questions.forEach((q, idx) => {
+        const div = document.createElement('div');
+        div.className = 'mb-6 p-4 bg-white rounded shadow';
+        div.innerHTML = `<p class='font-medium mb-2'>${idx+1}. ${q.q}</p>` +
+            q.options.map((opt, oi) => `<label class='block mb-1'><input type='radio' name='q${idx}' value='${oi}' class='mr-2'>${opt}</label>`).join('');
+        form.appendChild(div);
+    });
+    document.getElementById('submitColorQuiz').onclick = function() {
+        let score = 0;
+        questions.forEach((q, idx) => {
+            const selected = form.querySelector(`input[name='q${idx}']:checked`);
+            if(selected && Number(selected.value) === q.answer) score++;
+        });
+        // Show results and reveal correct/incorrect answers
+        let resultHtml = `<div class='mb-4'>You scored <span class='font-bold text-yellow-700'>${score} out of 30</span>.</div>`;
+        questions.forEach((q, idx) => {
+            const selected = form.querySelector(`input[name='q${idx}']:checked`);
+            const userAnswer = selected ? Number(selected.value) : null;
+            const isCorrect = userAnswer === q.answer;
+            resultHtml += `<div class='mb-2 p-3 rounded ${isCorrect ? 'bg-green-50 border border-green-400' : 'bg-red-50 border border-red-400'}'>` +
+                `<span class='font-semibold'>Q${idx+1}:</span> ${q.q}<br>` +
+                `<span>Your answer: <span class='${isCorrect ? 'text-green-700' : 'text-red-700'}'>${userAnswer !== null ? q.options[userAnswer] : '<em>No answer</em>'}</span></span><br>` +
+                (!isCorrect ? `<span>Correct answer: <span class='text-green-700 font-semibold'>${q.options[q.answer]}</span></span>` : '') +
+            `</div>`;
+        });
+        document.getElementById('colorQuizResult').innerHTML = resultHtml;
+        // Save score to user progress in localStorage
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            if (!currentUser.progress) currentUser.progress = { lessonsCompleted: [], quizScores: {} };
+            currentUser.progress.quizScores = currentUser.progress.quizScores || {};
+            currentUser.progress.quizScores['color'] = Math.round((score/30)*100);
+            try { if (window.saveCurrentUser) saveCurrentUser(currentUser); else localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch (e) {}
+        }
+    };
+    </script>
+</body>
+</html>

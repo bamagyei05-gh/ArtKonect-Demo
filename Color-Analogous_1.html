@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Analogous 1 | ArtKonekt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span>
+                        <a href="dashboard_new.html"> <img src="IMAGES/LOGO.svg" alt="ArtKonekt Logo" class="h-10 w-auto" /></a>
+                    </span>
+                    <span class="ml-2 text-xl font-semibold text-gray-900">ArtKonekt</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                                 </div>
+                <div class="flex items-center">
+                    <div class="relative group">
+                        <button id="userDropdownBtn" class="flex items-center space-x-2 focus:outline-none" aria-label="Open user menu">
+                            <i data-feather="user" class="h-6 w-6 text-gray-700"></i>
+                            <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                            <span class="sr-only">Welcome, <span id="userName">User</span></span>
+                        </button>
+                        <div id="userDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="#" id="profileLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="#" id="settingsLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            <a href="group.html" id="groupLink" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Group</a>
+                        </div>
+                    </div>
+
+                    <!-- Nav menu button (hamburger) -->
+                    <div class="relative group ml-4">
+                        <button id="navMenuBtn" class="flex items-center space-x-1 focus:outline-none" aria-label="Open navigation menu">
+                            <i data-feather="menu" class="h-6 w-6 text-gray-700"></i>
+                        </button>
+                        <div id="navMenu" class="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="index.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Home</a>
+                            <a href="learn.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Learn</a>
+                            <a href="solve.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Solve</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+             <aside class="hidden md:block">
+                <nav id="lessonSidebar" class="space-y-2 bg-white p-4 rounded-lg shadow">
+                     <h2 class="text-sm font-bold text-Red-100 mb-2">MOUDLE 1</BR>Principles & Elements of Design</h2>
+                    <h3 class="text-sm font-semibold text-red-700 mb-2"><strong class="text-blue-400" >Unit 1: </strong>   Principles of Design</h3>
+                    <a href="Principles_Intro_1.html" data-lesson="Principles_Intro_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">  <em> Lesson 1:</em> Introduction to Principles of Design</a>
+                    <a href="Principle-balance.html" data-lesson="Principle-balance.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 2:</em> Balance</a>
+                    <a href="Principle-Emphasis.html" data-lesson="Principle-Emphasis.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 3:</em> Emphasis</a>
+                    <a href="Principle-Harmony.html" data-lesson="Principle-Harmony.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 4: </em>Harmony</a>
+                    <a href="Principle-Rhythm.html" data-lesson="Principle-Rhythm.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"><em>Lesson 5: </em>Rhythm</a>
+
+
+                    <h3 class="text-sm font-semibold text-purple-500 mt-4 mb-2">  <strong class="text-blue-400" >Unit 2: </strong> Elements of Design   </h3>
+
+                    <a href="Element-Intro_1.html" data-lesson="Element-Intro_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">  <em>Lesson 1:</em>Introduction to Elements of Design</a>
+                      <a href="Element-Texture_1.html" data-lesson="Element-Texture_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 2:</em> Texture</a>
+
+                    <a href="Element-WhiteSpace_1.html" data-lesson="Element-WhiteSpace_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 3: </em>White Space</a>
+                    <a href="Element-Shape_1.html" data-lesson="Element-Shape_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 4: </em>Shape</a>
+                    <a href="Element-Value_1.html" data-lesson="Element-Value_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 5: </em>Value</a>
+
+                    <h3 class="text-sm font-semibold text-red-500 mt-4 mb-2">   <strong class="text-blue-400" >Unit 3: </strong>Color Theory</h3>
+                    <a href="Color-Intro_1.html" data-lesson="Color-Intro_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 1:</em> Introduction to Color Theory</a>
+                    <a href="Color-Contemporary_1.html" data-lesson="Color-Contemporary_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 2:</em> Contemporary Color Usage</a>
+                    <a href="Color-Analogous_1.html" data-lesson="Color-Analogous_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 2: </em>Analogous Colors</a>
+                    <a href="Color-Triadic_1.html" data-lesson="cColor-Triadic_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 4:</em> Triadic Colors </a>
+                    <a href="Color-Mood_1.html" data-lesson="Color-Mood_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 4:</em> Mood</a>
+                    <a href="Color-Wheel_1.html" data-lesson="Color-Wheel_1.html" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100"> <em>Lesson 5:</em>12-Color Wheel </a>
+                </nav>
+            </aside>
+            <div id="lessonContent" class="md:col-span-3">
+                <div class="mb-6 md:hidden">
+                    <label for="lessonSelectMobile" class="sr-only">Jump to lesson</label>
+                    <select id="lessonSelectMobile" class="block w-full border-gray-300 rounded-md">
+                        <option value="Principles_Intro_1.html"> Introduction to Principle of Design </option>
+                        <option value="lesson1.html">Balance</option>
+                        <option value="lesson2.html">Emphasis</option>
+                        <option value="lesson3.html">Harmony</option>
+                        <option value="principle-rhythm.html">Rhythm</option>
+                        <option value="Element-WhiteSpace_1.html">White Space</option>
+                        <option value="Element-Intro_1.html">Introduction to Elemnts of Design</option>
+                        <option value="Element-Shape_1.html">Shape</option>
+                        <option value="Element-Texture_1.html">Texture</option>
+                        <option value="Element-Color_1.html">Color</option>
+                        <option value="Element-Value_1.html">Value</option>
+                        <option value="Element-Rythm_1.html">Rhythm</option>
+                        <option value="Color-Intro_1.html">Introduction to Cole Theory</option>
+                        <option value="Color-Contemporary_1.html">Contemporary Color Usage</option>
+                        <option value="Color-Analogous_1.html"> Analogous</option>
+                        <option value="Color-Triadic_1.html"> Triadic</option>
+                        <option value="Color-Mood_1.html"> Mood</option>
+                        <option value="Color-Wheel_1.html"> 12-Color Wheel</option>
+                    </select>
+                </div>
+        <!-- replaced large completion buttons with inline Done button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // insert before navigation links
+            const navLinks = document.querySelector('.mt-8');
+            if (navLinks) navLinks.parentNode.insertBefore(container, navLinks);
+
+            function isCompleted() {
+                try { const u = JSON.parse(localStorage.getItem('currentUser')); return u && u.progress && Array.isArray(u.progress.lessonsCompleted) && u.progress.lessonsCompleted.includes('color-analogous-1'); } catch (e) { return false; }
+            }
+            function setCompletedState(isDone) {
+                const buttons = document.querySelectorAll('.complete-lesson-btn');
+                buttons.forEach(btn => {
+                    btn.disabled = !!isDone;
+                    btn.textContent = isDone ? 'Done' : 'Mark as Completed';
+                });
+            }
+            setCompletedState(isCompleted());
+            document.querySelectorAll('.complete-lesson-btn').forEach(b => b.addEventListener('click', function() {
+                try {
+                    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+                    if (!currentUser) return;
+                    if (!currentUser.progress) currentUser.progress = { lessonsCompleted: [] };
+                    if (!currentUser.progress.lessonsCompleted.includes('color-analogous-1')) currentUser.progress.lessonsCompleted.push('color-analogous-1');
+                    try { if (window.saveCurrentUser) saveCurrentUser(currentUser); else localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch (e) { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
+                    setCompletedState(true);
+                    alert('Color Analogous lesson marked as completed! Your dashboard will reflect this progress.');
+                } catch (e) { console.error(e); }
+            }));
+        });
+        </script>
+        <div class="max-w-3xl mx-auto space-y-6">
+            <header class="flex items-start justify-between">
+                <h1 class="text-3xl font-bold text-gray-900"> Analogous Color Schemes</h1>
+                <div class="ml-4">
+                    <button id="completeLessonBtn" class="complete-lesson-btn inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium py-1 px-3 rounded-md transition duration-200">
+                        <span class="complete-lesson-text">Done</span>
+                        <svg class="complete-lesson-check h-4 w-4 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                    </button>
+                </div>
+            </header>
+        <section class="mb-8">
+            <h2 class="text-2xl font-semibold text-indigo-700 mb-4">What is an Analogous Color Scheme?</h2>
+            <p class="text-gray-700 mb-4">Analogous colors are groups of three colors that sit next to each other on the color wheel. They create harmonious, pleasing palettes often found in nature.</p>
+            <ul class="list-disc pl-6 text-gray-700 mb-4">
+                <li><strong>Harmony:</strong> Analogous schemes are easy on the eyes and create unity.</li>
+                <li><strong>Examples:</strong> Blue, blue-green, and green; red, red-orange, and orange.</li>
+                <li><strong>Usage:</strong> Great for backgrounds, gradients, and subtle transitions.</li>
+            </ul>
+            <img src="IMAGES/analogous.jpg" alt="Analogous color example" class="rounded-lg mb-4 w-full max-w-xl">
+            <div class="text-sm text-gray-500 italic mb-4">Example: Landscapes often use analogous colors for sky and foliage.</div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-indigo-700 mb-2">Why Analogous Colors Matter</h2>
+            <p class="text-gray-700">Analogous colors create smooth transitions and are useful for creating calm, unified designs.</p>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-semibold text-indigo-700 mb-4">Exercises</h2>
+            <ol class="list-decimal pl-6 text-gray-700">
+                <li>Create a gradient using three analogous colors.</li>
+                <li>Design a logo or poster using only analogous colors.</li>
+                <li>Find a photo and identify its analogous palette.</li>
+            </ol>
+        </section>
+        <div class="mt-8 flex gap-4">
+            <a href="Color-Contemporary_1.html" class="inline-block bg-gray-200 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-300">⬅️</a>
+            <a href="Color-Triadic_1.html" class="inline-block bg-gray-200 text-gray-700 px-6 py-3 rounded-md font-medium hover:bg-gray-300">➡️ </a>
+            
+        </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        // Sidebar active highlight and mobile select navigation for lessons
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const filename = window.location.pathname.split('/').pop() || 'Color-Analogous_1.html';
+                const sidebar = document.getElementById('lessonSidebar');
+                if (sidebar) {
+                    const active = sidebar.querySelector('[data-lesson="' + filename + '"]');
+                    if (active) {
+                        active.classList.add('bg-indigo-50','border-l-4','border-indigo-600','text-indigo-700','font-medium');
+                        active.classList.remove('text-gray-700');
+                    }
+                }
+                const select = document.getElementById('lessonSelectMobile');
+                if (select) {
+                    select.value = filename;
+                    select.addEventListener('change', function() {
+                        if (this.value) window.location.href = this.value;
+                    });
+                }
+            } catch (e) { console.error(e); }
+        });
+        </script>
+    </main>
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <img src="IMAGES/LOGO.svg" alt="" class="mr-2" style="height: 32px;">
+                        ArtKonekt
+                    </a>
+                    <p class="text-gray-400 mt-2">For SHS Visual Arts Curriculum</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="info"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="mail"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 ArtKonekt@Mrnoble. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>feather.replace();</script>
+    <script src="/assets/js/header-menus.js"></script>
+    <script src="/assets/js/complete-lesson.js"></script>
+</body>
+</html>

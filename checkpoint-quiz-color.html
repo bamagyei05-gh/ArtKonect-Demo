@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint Quiz — Color Theory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/save-current-user.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+   
+    <div class="max-w-4xl mx-auto py-10 px-6">
+        <header class="mb-6">
+            <h1 class="text-2xl font-bold">Checkpoint — Color Theory</h1>
+            <p class="text-sm text-gray-600 mt-1">This checkpoint checks understanding across the Color Theory lessons. 10 questions are selected and shuffled — pick the best answer for each question. Your result will be saved to your progress.</p>
+            <div class="mt-3">
+                <span id="colorStatus" class="hidden inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded">Color ✓</span>
+            </div>
+        </header>
+
+        <main class="bg-white p-6 rounded-lg shadow">
+            <form id="quizForm-color">
+                <div id="color-quiz-questions" class="space-y-6"></div>
+                <div class="mt-8 flex items-center justify-between">
+                    <div class="text-sm text-gray-500">Tip: review the color lessons from the sidebar if you need to revisit material.</div>
+                    <div class="flex gap-3">
+                        <button type="button" id="resetColorBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded">Reset</button>
+                        <button type="button" id="submitColorBtn" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300">Submit</button>
+                        <a href="Color-Intro_1.html"  class="bg-blue-500 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300" >Continue</a>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script>
+        function shuffleArray(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } }
+
+        const colorQuestions = [
+            { q: 'Which color scheme uses three colors evenly spaced on the color wheel ?', name: 'c_q1', options: [{v: 'a', t: 'Analogous'},{v: 'b', t: 'Triadic'},{v: 'c', t: 'Complementary'}], feedbackId: 'c_feedback-q1' },
+            { q: 'What color is created by mixing red and blue?', name: 'c_q2', options: [{v: 'a', t: 'Purple'},{v: 'b', t: 'Green'},{v: 'c', t: 'Orange'}], feedbackId: 'c_feedback-q2' },
+            { q: 'Which color mood is typically associated with calmness?', name: 'c_q3', options: [{v: 'a', t: 'Red'},{v: 'b', t: 'Blue'},{v: 'c', t: 'Yellow'}], feedbackId: 'c_feedback-q3' },
+            { q: 'What is the term for colors opposite each other on the color wheel?', name: 'c_q4', options: [{v: 'a', t: 'Analogous'},{v: 'b', t: 'Triadic'},{v: 'c', t: 'Complementary'}], feedbackId: 'c_feedback-q4' },
+            { q: 'Which resource shows hues arranged in a circle ?', name: 'c_q5', options: [{v: 'a', t: 'Color Wheel'},{v: 'b', t: 'Color Chart'},{v: 'c', t: 'Color Map'}], feedbackId: 'c_feedback-q5' },
+            { q: 'What is the term for a color plus white?', name: 'c_q6', options: [{v: 'a', t: 'Tint'},{v: 'b', t: 'Shade'},{v: 'c', t: 'Tone'}], feedbackId: 'c_feedback-q6' },
+            { q: 'Which scheme uses colors next to each other on the wheel?', name: 'c_q7', options: [{v: 'a', t: 'Analogous'},{v: 'b', t: 'Complementary'},{v: 'c', t: 'Monochromatic'}], feedbackId: 'c_feedback-q7' },
+            { q: 'What is the term for a color plus black?', name: 'c_q8', options: [{v: 'a', t: 'Tint'},{v: 'b', t: 'Shade'},{v: 'c', t: 'Tone'}], feedbackId: 'c_feedback-q8' },
+            { q: 'Which color is considered a cool color?', name: 'c_q9', options: [{v: 'a', t: 'Red'},{v: 'b', t: 'Blue'},{v: 'c', t: 'Yellow'}], feedbackId: 'c_feedback-q9' },
+            { q: 'What is the term for colors of a single hue with different values?', name: 'c_q10', options: [{v: 'a', t: 'Monochromatic'},{v: 'b', t: 'Analogous'},{v: 'c', t: 'Triadic'}], feedbackId: 'c_feedback-q10' }
+        ];
+
+        function renderShuffledQuestions() {
+            const cqs = [...colorQuestions];
+            shuffleArray(cqs);
+            const cqContainer = document.getElementById('color-quiz-questions'); cqContainer.innerHTML = '';
+            cqs.forEach((q, idx) => {
+                let opts = '';
+                q.options.forEach(opt => { opts += `<label class="flex items-center space-x-3"><input type="radio" name="${q.name}" value="${opt.v}" class="h-4 w-4 text-indigo-600"> <span>${opt.t}</span></label>`; });
+                cqContainer.innerHTML += `<div class="bg-gray-50 border border-gray-100 p-5 rounded mb-4"><p class="font-medium mb-3">${idx+1}. ${q.q}</p><div class="space-y-2">${opts}</div><div id="${q.feedbackId}" class="hidden mt-3 p-3 rounded text-sm"></div></div>`;
+            });
+        }
+
+        renderShuffledQuestions();
+
+        const answers = { q1: 'b', q2: 'a', q3: 'b', q4: 'c', q5: 'a', q6: 'a', q7: 'a', q8: 'b', q9: 'b', q10: 'a' };
+        const explanations = {
+            q1: 'Triadic uses three colors evenly spaced on the wheel ().',
+            q2: 'Red and blue make purple.',
+            q3: 'Blue is often used to show calmness (Mood lesson).',
+            q4: 'Complementary colors are opposite on the wheel.',
+            q5: 'The color wheel is a diagram of hues (12-Color Wheel lesson).',
+            q6: 'A tint is a color plus white.',
+            q7: 'Analogous describes neighbouring colours (Analogous lesson).',
+            q8: 'A shade is a color plus black.',
+            q9: 'Blue is a cool color.',
+            q10: 'Monochromatic = one hue, different values.'
+        };
+
+        function showColorBadgeStatus() {
+            try {
+                const u = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+                const badge = document.getElementById('colorStatus');
+                if (!u || !u.progress || !u.progress.checkpointsCompleted) { if (badge) badge.classList.add('hidden'); return; }
+                if (badge) { if (u.progress.checkpointsCompleted['color']) badge.classList.remove('hidden'); else badge.classList.add('hidden'); }
+            } catch (e) {}
+        }
+
+        showColorBadgeStatus();
+
+        document.getElementById('submitColorBtn').addEventListener('click', function () {
+            // Compute score silently (do not reveal per-question feedback)
+            let score = 0;
+            for (let i = 1; i <= 10; i++) {
+                const q = `q${i}`;
+                const selected = document.querySelector(`input[name="c_${q}"]:checked`);
+                if (selected && selected.value === answers[q]) score++;
+            }
+
+            // Ensure per-question feedback elements are hidden and cleared
+            for (let i = 1; i <= 10; i++) {
+                const fb = document.getElementById(`c_feedback-q${i}`);
+                if (fb) { fb.classList.add('hidden'); fb.innerHTML = ''; }
+            }
+
+                try {
+                let quizScores = JSON.parse(localStorage.getItem('quizScores') || '{}');
+                // save latest percent (0-100) for color checkpoint
+                const percent = Math.round((score / 10) * 100);
+                quizScores['color'] = percent;
+                localStorage.setItem('quizScores', JSON.stringify(quizScores));
+
+                const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+                if (currentUser) {
+                    currentUser.progress = currentUser.progress || { lessonsCompleted: [], quizScores: {}, checkpointsCompleted: {} };
+                    const percent = Math.round((score / 10) * 100);
+                    currentUser.progress.quizScores = currentUser.progress.quizScores || {};
+                    currentUser.progress.quizScores['color'] = percent;
+                    currentUser.progress.checkpointsCompleted = currentUser.progress.checkpointsCompleted || {};
+                    currentUser.progress.checkpointsCompleted['color'] = true;
+                    try { if (window.saveCurrentUser) saveCurrentUser(currentUser); else localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch (e) {}
+                }
+            } catch (e) {}
+
+            // Only show overall score
+            alert(`You scored ${score} out of 10.`);
+            try { showColorBadgeStatus(); } catch (e) {}
+        });
+
+        // Reset handler
+        document.getElementById('resetColorBtn').addEventListener('click', function () {
+            const inputs = document.querySelectorAll('#color-quiz-questions input[type=radio]');
+            inputs.forEach(i => i.checked = false);
+            for (let i = 1; i <= 10; i++) {
+                const fb = document.getElementById(`c_feedback-q${i}`);
+                if (fb) { fb.classList.add('hidden'); fb.innerHTML = ''; }
+            }
+        });
+        // Insert back button if 'from' parameter present (same logic as other checkpoint page)
+        (function insertBackToPrevious() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const from = params.get('from');
+                if (!from) return;
+                if (from.includes('://') || from.startsWith('//')) return;
+                if (from.includes('..')) return;
+                const safeHref = from;
+                const colorArea = document.getElementById('colorNavArea');
+                const backBtn = `<a href="${safeHref}" class="bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-6 rounded-lg border border-gray-300 transition duration-300">Back to previous lesson</a>`;
+                if (colorArea) colorArea.insertAdjacentHTML('afterbegin', backBtn);
+            } catch(e){}
+        })();
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+    </script>
+</body>
+</html>

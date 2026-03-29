@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint — Elements & Principles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/save-current-user.js"></script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="max-w-4xl mx-auto py-10 px-6">
+        <header class="mb-6">
+            <h1 class="text-2xl font-bold">Checkpoint — Elements & Principles of Design</h1>
+            <p class="text-sm text-gray-600 mt-1">This checkpoint checks understanding across the Elements and Principles lessons. 10 questions are selected and shuffled — pick the best answer for each question. Your result will be saved to your progress.</p>
+            <div class="mt-3 space-x-3">
+                <span id="elementsStatus" class="hidden inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded">Elements ✓</span>
+                <span id="principlesStatus" class="hidden inline-flex items-center px-2 py-1 bg-green-100 text-green-800 rounded">Principles ✓</span>
+            </div>
+        </header>
+
+        <main class="bg-white p-6 rounded-lg shadow">
+            <form id="quizForm-elements">
+                <div id="elements-quiz-questions" class="space-y-6"></div>
+                <div class="mt-8 flex items-center justify-between">
+                    <div class="text-sm text-gray-500">Tip: You can take this checkpoint before starting the lessons to see what you already know.</div>
+                    <div class="flex gap-3">
+                        <button type="button" id="resetBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded">Reset</button>
+                        <button type="button" id="submitBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">Submit</button>
+                        <a href="Element-Intro_1.html"  class="bg-yellow-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded">Continue</a>
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        // Utility: shuffle
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Questions that cover the Elements and Principles lessons in this workspace
+        const elementsQuestions = [
+            { q: 'Which element of design describes surface quality?', name: 'e_q1', options: [{v:'a',t:'Texture'},{v:'b',t:'Shape'},{v:'c',t:'Value'}], feedbackId:'e_feedback-q1' },
+            { q: 'Which principle refers to the distribution of visual weight?', name: 'e_q2', options: [{v:'a',t:'Emphasis'},{v:'b',t:'Balance'},{v:'c',t:'Pattern'}], feedbackId:'e_feedback-q2' },
+            { q: 'What term describes the relative size relationships between parts of a whole?', name: 'e_q3', options: [{v:'a',t:'Proportion'},{v:'b',t:'Contrast'},{v:'c',t:'Rhythm'}], feedbackId:'e_feedback-q3' },
+            { q: 'Which element refers to the lightness and darkness in a composition?', name: 'e_q4', options: [{v:'a',t:'Value'},{v:'b',t:'Hue'},{v:'c',t:'Texture'}], feedbackId:'e_feedback-q4' },
+            { q: 'Which element is defined by height and width?', name: 'e_q5', options: [{v:'a',t:'Shape'},{v:'b',t:'Line'},{v:'c',t:'Form'}], feedbackId:'e_feedback-q5' },
+            { q: 'Which principle creates a sense of movement through repetition and variation?', name: 'e_q6', options: [{v:'a',t:'Unity'},{v:'b',t:'Rhythm'},{v:'c',t:'Balance'}], feedbackId:'e_feedback-q6' },
+            { q: 'Which principle helps an element stand out and focus the viewer?', name: 'e_q7', options: [{v:'a',t:'Emphasis'},{v:'b',t:'Harmony'},{v:'c',t:'Scale'}], feedbackId:'e_feedback-q7' },
+            { q: 'What is the role of white space in a layout?', name: 'e_q8', options: [{v:'a',t:'To separate and group elements'},{v:'b',t:'To add texture'},{v:'c',t:'To create color harmony'}], feedbackId:'e_feedback-q8' },
+            { q: 'Which element describes the area around and between objects?', name: 'e_q9', options: [{v:'a',t:'Space'},{v:'b',t:'Texture'},{v:'c',t:'Value'}], feedbackId:'e_feedback-q9' },
+            { q: 'Why use contrast in a design?', name: 'e_q10', options: [{v:'a',t:'To create emphasis and readability'},{v:'b',t:'To create repetition'},{v:'c',t:'To remove hierarchy'}], feedbackId:'e_feedback-q10' }
+        ];
+
+        // Render questions (shuffled)
+        function renderShuffledQuestions() {
+            const qs = [...elementsQuestions];
+            shuffleArray(qs);
+            const container = document.getElementById('elements-quiz-questions');
+            container.innerHTML = '';
+            qs.forEach((q, idx) => {
+                let opts = '';
+                q.options.forEach(opt => {
+                    opts += `<label class="flex items-center space-x-3"><input type="radio" name="${q.name}" value="${opt.v}" class="h-4 w-4 text-indigo-600"> <span>${opt.t}</span></label>`;
+                });
+                container.innerHTML += `<div class="bg-gray-50 border border-gray-100 p-5 rounded"><p class="font-medium mb-3">${idx+1}. ${q.q}</p><div class="space-y-2">${opts}</div><div id="${q.feedbackId}" class="hidden mt-3 p-3 rounded text-sm"></div></div>`;
+            });
+        }
+
+        renderShuffledQuestions();
+
+        // Answer keys and explanations keyed by q1..q10
+        const answers = { q1: 'a', q2: 'b', q3: 'a', q4: 'a', q5: 'a', q6: 'b', q7: 'a', q8: 'a', q9: 'a', q10: 'a' };
+        const explanations = {
+            q1: 'Texture refers to the surface quality of an object or image (Texture lesson).',
+            q2: 'Balance is the distribution of visual weight in a composition (Balance lesson).',
+            q3: 'Proportion describes relative size relationships between parts of a whole.',
+            q4: 'Value is the lightness and darkness in a composition and affects contrast.',
+            q5: 'Shape is defined by height and width (Shape lesson).',
+            q6: 'Rhythm creates organized movement through repetition and variation.',
+            q7: 'Emphasis makes one element stand out to create a focal point.',
+            q8: 'White space separates and groups elements to improve readability and hierarchy.',
+            q9: 'Space (white space) is the area around and between objects.',
+            q10: 'Contrast is used to create emphasis and improve readability.'
+        };
+
+        function showBadgeStatus() {
+            try {
+                const u = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+                const eBadge = document.getElementById('elementsStatus');
+                const pBadge = document.getElementById('principlesStatus');
+                if (!u || !u.progress || !u.progress.checkpointsCompleted) { if (eBadge) eBadge.classList.add('hidden'); if (pBadge) pBadge.classList.add('hidden'); return; }
+                const done = u.progress.checkpointsCompleted;
+                if (eBadge) { if (done['elements']) eBadge.classList.remove('hidden'); else eBadge.classList.add('hidden'); }
+                if (pBadge) { if (done['principles']) pBadge.classList.remove('hidden'); else pBadge.classList.add('hidden'); }
+            } catch (e) {}
+        }
+
+        showBadgeStatus();
+
+        // Submit handler: compute score but DO NOT reveal per-question answers or explanations
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            let score = 0;
+            for (let i = 1; i <= 10; i++) {
+                const name = `e_q${i}`;
+                const selected = document.querySelector(`input[name="${name}"]:checked`);
+                const key = `q${i}`;
+                if (selected && selected.value === answers[key]) {
+                    score++;
+                }
+            }
+
+            // ensure any per-question feedback remains hidden (do not reveal answers)
+            for (let i = 1; i <= 10; i++) {
+                const fb = document.getElementById(`e_feedback-q${i}`);
+                if (fb) { fb.classList.add('hidden'); fb.innerHTML = ''; }
+            }
+
+            // persist into localStorage summary object
+            try {
+                    // convert correct count to points out of 20 (each correct = 2 points)
+                    const points = score * 2;
+                    let quizScores = JSON.parse(localStorage.getItem('quizScores') || '{}');
+                    // save latest percent (0-100) for 'elements' rather than accumulating
+                    const percent = Math.round((points / 20) * 100);
+                    quizScores['elements'] = percent;
+                    localStorage.setItem('quizScores', JSON.stringify(quizScores));
+
+                // per-user progress
+                const currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+                if (currentUser) {
+                    currentUser.progress = currentUser.progress || { lessonsCompleted: [], quizScores: {}, checkpointsCompleted: {} };
+                        const percent = Math.round((points / 20) * 100);
+                        currentUser.progress.quizScores = currentUser.progress.quizScores || {};
+                        currentUser.progress.quizScores['elements'] = percent;
+                    // mark both elements and principles checkpoints completed for this combined checkpoint
+                    currentUser.progress.checkpointsCompleted = currentUser.progress.checkpointsCompleted || {};
+                    currentUser.progress.checkpointsCompleted['elements'] = true;
+                    currentUser.progress.checkpointsCompleted['principles'] = true;
+                    try { if (window.saveCurrentUser) saveCurrentUser(currentUser); else localStorage.setItem('currentUser', JSON.stringify(currentUser)); } catch (e) {}
+                }
+            } catch (e) {}
+
+            // Only show the overall score — do not reveal which answers were correct or incorrect
+                // show points out of 20
+                const pointsDisplay = score * 2;
+                alert(`You scored ${pointsDisplay} out of 20.`);
+            try { showBadgeStatus(); } catch (e) {}
+        });
+
+        // Reset button clears selections and feedback
+        document.getElementById('resetBtn').addEventListener('click', function () {
+            const inputs = document.querySelectorAll('#elements-quiz-questions input[type=radio]');
+            inputs.forEach(i => i.checked = false);
+            for (let i = 1; i <= 10; i++) {
+                const fb = document.getElementById(`e_feedback-q${i}`);
+                if (fb) { fb.classList.add('hidden'); fb.innerHTML = ''; }
+            }
+        });
+
+        // Insert 'Back to previous lesson' if safe from query param
+        (function insertBackToPrevious() {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const from = params.get('from');
+                if (!from) return;
+                if (from.includes('://') || from.startsWith('//')) return;
+                if (from.includes('..')) return;
+                const safeHref = from;
+                const form = document.getElementById('quizForm-elements');
+                const backBtn = `<a href="${safeHref}" class="inline-block bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 rounded-lg border border-gray-300 transition duration-300 mt-4">Back to previous lesson</a>`;
+                if (form) form.insertAdjacentHTML('afterend', backBtn);
+            } catch (e) {}
+        })();
+
+        AOS.init({ duration: 600, easing: 'ease-in-out', once: true });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | Visual Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="assets/js/save-current-user.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col justify-center items-center">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 mt-8">
+        <div class="flex flex-col items-center mb-6">
+            <i data-feather="user-plus" class="h-12 w-12 text-indigo-600"></i>
+            <h2 class="mt-4 text-2xl font-bold text-gray-900">Create your Visual Arts account</h2>
+        </div>
+        <form id="signupForm" class="space-y-6">
+            <div>
+                <label for="role" class="block text-sm font-medium text-gray-700">Sign up as</label>
+                <select id="role" name="role" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+            </div>
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                <input id="name" name="name" type="text" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email or Phone</label>
+                <input id="email" name="email" type="text" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter your email or phone number">
+            </div>
+            <div>
+                <label for="groupCode" class="block text-sm font-medium text-gray-700">Group Code (optional)</label>
+                <input id="groupCode" name="groupCode" type="text" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter group code if you have one">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input id="password" name="password" type="password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <div>
+                <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                <input id="confirm-password" name="confirm-password" type="password" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+            </div>
+            <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700">Create Account</button>
+        </form>
+        <div class="mt-6 text-center">
+            <span class="text-sm text-gray-600">Already have an account?</span>
+            <a href="login.html" class="ml-1 text-indigo-600 hover:text-indigo-500 font-medium">Sign in</a>
+        </div>
+    </div>
+    <script>
+    feather.replace();
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const emailOrPhone = document.getElementById('email').value.trim();
+    const groupCode = document.getElementById('groupCode').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const role = document.getElementById('role').value;
+        if (password !== confirmPassword) {
+            alert('Passwords do not match');
+            return;
+        }
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        if (users.some(u => u.email === emailOrPhone || u.contact === emailOrPhone)) {
+            alert('Email or phone already registered');
+            return;
+        }
+        let email = '', contact = '';
+        if (/^\d{10,}$/.test(emailOrPhone)) {
+            contact = emailOrPhone;
+        } else {
+            email = emailOrPhone;
+        }
+        const newUser = {
+            id: Date.now().toString(),
+            name,
+            email,
+            contact,
+            password,
+            role,
+            groupCode: groupCode || undefined,
+            progress: {
+                lessonsCompleted: [],
+                quizScores: {},
+                solveActivities: {}
+            }
+        };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        // Do NOT auto-login the user after sign up. Redirect them to the login page.
+        // Keep stored users list only; remove any existing currentUser set on signup.
+        try { localStorage.removeItem('currentUser'); } catch (e) { /* ignore */ }
+         window.location.href = 'login.html';
+    });
+    </script>
+</body>
+</html>

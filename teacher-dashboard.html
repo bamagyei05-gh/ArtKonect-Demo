@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard | ArtKonekt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+    /* small collapse/expand animation */
+    .collapsible { overflow: hidden; transition: max-height 260ms ease; }
+    /* ensure assign quiz body transition works */
+    #assignQuizBody.collapsible { max-height: 0; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i data-feather="user-check" class="text-indigo-600"></i>
+                    <span class="ml-2 text-xl font-semibold text-gray-900">ArtKonekt (Teacher)</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="learn.html" class="text-indigo-600 border-b-2 border-indigo-600 px-3 py-2 text-sm font-medium">Dashboard</a>
+                    
+                </div>
+                <div class="flex items-center">
+                    <div class="relative group">
+                        <button id="userDropdownBtn" class="flex items-center space-x-1 focus:outline-none">
+                            <span class="text-gray-700 text-sm font-medium">Welcome, <span id="teacherName">Teacher</span></span>
+                            <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                        </button>
+                        <div id="userDropdownMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                            <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Teacher Dashboard Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900">Teacher Dashboard</h2>
+            <p class="mt-2 text-gray-600">View student progress, manage lessons, and access teaching resources.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white rounded-lg shadow p-6">
+                                <h3 class="text-lg font-semibold mb-2">Student Progress Overview</h3>
+                                <p class="text-gray-600 mb-4">See how your students are progressing through the curriculum.</p>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-indigo-100">
+                                            <tr>
+                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Student</th>
+                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Lessons Completed</th>
+                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Quiz Score</th>
+                                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Progress</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-2 font-semibold text-gray-900">Bismark</td>
+                                                <td class="px-4 py-2">3/5</td>
+                                                <td class="px-4 py-2">80%</td>
+                                                <td class="px-4 py-2">
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                                    </div>
+                                                    <span class="ml-2 text-xs text-gray-700">60% Complete</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+<tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-2 font-semibold text-gray-900">Felicia Agyei</td>
+                                                <td class="px-4 py-2">2/5</td>
+                                                <td class="px-4 py-2">40%</td>
+                                                <td class="px-4 py-2">
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                                    </div>
+                                                    <span class="ml-2 text-xs text-gray-700">40% Complete</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+<tbody class="bg-white divide-y divide-gray-200">
+                                            <tr>
+                                                <td class="px-4 py-2 font-semibold text-gray-900">Bismark</td>
+                                                <td class="px-4 py-2">3/5</td>
+                                                <td class="px-4 py-2">80%</td>
+                                                <td class="px-4 py-2">
+                                                    <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                        <div class="bg-indigo-600 h-2.5 rounded-full" style="width: 60%"></div>
+                                                    </div>
+                                                    <span class="ml-2 text-xs text-gray-700">60% Complete</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+
+
+
+                                    </table>
+                                </div>
+                        </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-lg font-semibold mb-2">Teaching Resources</h3>
+                <ul class="list-disc pl-5 text-gray-700">
+                    <li><a href="#" class="text-indigo-600 hover:underline">Lesson Plans</a></li>
+                    <li><a href="#" class="text-indigo-600 hover:underline">Assessment Tools</a></li>
+                    <li><a href="#" class="text-indigo-600 hover:underline">Classroom Activities</a></li>
+                    <li><a href="pdfs/Teacher_Guide.pdf" class="text-indigo-600 hover:underline" target="_blank">Teacher Guide</a></li>
+                </ul>
+            </div>
+        </div>
+
+<!-- Group Management Section -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold mb-2">Groups</h3>
+                <button id="groupToggleBtn" class="bg-indigo-600 text-white px-4 py-2 rounded inline-flex items-center">
+                    <span>Group</span>
+                    <span id="groupToggleCaret" class="ml-2">▸</span>
+                </button>
+            </div>
+            <div id="groupPanel" class="mt-4 hidden">
+                <div class="flex gap-2 mb-4">
+                    <button class="group-tab bg-gray-100 px-3 py-1 rounded" data-tab="create">Create & Assign Groups</button>
+                    <button class="group-tab bg-gray-100 px-3 py-1 rounded" data-tab="assign">Assign Students to Group</button>
+                    <button class="group-tab bg-gray-100 px-3 py-1 rounded" data-tab="your">Your Groups</button>
+                </div>
+
+                <div id="groupCreateSection" class="mb-4">
+                    <div class="flex flex-col gap-2 mb-2">
+                        <label class="inline-flex items-center gap-2 text-sm text-gray-700">
+                            <input type="checkbox" id="enableGroupCodes" />
+                            <span>Enable group codes (advanced)</span>
+                        </label>
+                    </div>
+                    <div id="groupCodeControls" class="flex flex-col md:flex-row gap-4 mb-4 hidden">
+                        <input type="text" id="newGroupName" class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3" placeholder="Group Name (e.g. Class A)">
+                        <button id="generateGroupCode" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-700">Generate Group Code</button>
+                        <input type="text" id="newGroupCode" class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3" placeholder="Or enter group code">
+                        <button id="createGroupBtn" class="bg-green-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-green-700">Create Group</button>
+                    </div>
+                    <div id="createGroupNoCode" class="mb-4">
+                        <input type="text" id="newGroupNameNoCode" class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3" placeholder="Group Name (e.g. Class A)">
+                        <button id="createGroupBtnNoCode" class="bg-green-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-green-700">Create Group (no code)</button>
+                    </div>
+                    <div id="groupStatus" class="mb-4 text-green-600 font-medium"></div>
+                </div>
+
+                <div id="groupAssignSection" class="hidden mb-4">
+                    <h4 class="font-semibold mb-2">Assign Students to Group</h4>
+                    <form id="assignGroupForm" class="flex flex-col md:flex-row gap-4">
+                        <input type="text" id="studentEmail" class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3" placeholder="Student Email or Phone" required>
+                        <input type="text" id="assignGroupCode" class="border border-gray-300 rounded-md px-4 py-2 w-full md:w-1/3" placeholder="Group Code" required>
+                        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-700">Assign to Group</button>
+                    </form>
+                    <div id="assignStatus" class="mt-2 text-green-600 font-medium"></div>
+
+                    <!-- Assign Quiz moved here: header + collapsible body (keeps existing IDs) -->
+                    <div class="mt-4 border-t pt-4">
+                        <div id="assignQuizHeader" class="flex justify-between items-center cursor-pointer">
+                            <h4 class="font-semibold mb-2">Assign Quiz</h4>
+                            <span id="assignQuizCaret" class="text-gray-500">▸</span>
+                        </div>
+                        <div id="assignQuizBody" class="mt-2 hidden">
+                            <form id="assignQuizForm" class="flex flex-col gap-4 md:flex-row md:items-end">
+                                <div class="flex flex-col gap-2 w-full md:w-1/3">
+                                    <label for="quizTitle" class="font-medium text-gray-700">Quiz Title</label>
+                                    <input type="text" id="quizTitle" class="border border-gray-300 rounded-md px-4 py-2" placeholder="e.g. Lesson 1 Quiz" required>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full md:w-1/3">
+                                    <label for="assignToType" class="font-medium text-gray-700">Assign To</label>
+                                    <select id="assignToType" class="border border-gray-300 rounded-md px-4 py-2">
+                                        <option value="group">Group</option>
+                                        <option value="student">Individual Student</option>
+                                    </select>
+                                </div>
+                                <div class="flex flex-col gap-2 w-full md:w-1/3" id="groupOrStudentInput">
+                                    <label for="groupOrStudent" class="font-medium text-gray-700">Group Name/Code or Student Email</label>
+                                    <input type="text" id="groupOrStudent" class="border border-gray-300 rounded-md px-4 py-2" placeholder="Type group name/code or student email" required>
+                                </div>
+                                <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-700">Assign Quiz</button>
+                            </form>
+                            <div id="quizAssignStatus" class="mt-2 text-green-600 font-medium"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="groupYourSection" class="hidden">
+                    <h4 class="font-semibold mb-2">Your Groups</h4>
+                    <div id="teacherGroupsList" class="text-gray-700">
+                        <!-- Filled by JS -->
+                    </div>
+                    <div id="groupDetailsPanel" class="mt-4 bg-gray-50 border border-gray-200 rounded p-4 hidden">
+                        <h5 class="font-semibold" id="groupDetailsTitle">Group: </h5>
+                        <div class="mt-2">
+                            <label class="block text-sm font-medium text-gray-700">Group Name</label>
+                            <input type="text" id="editGroupName" class="border border-gray-300 rounded-md px-3 py-2 w-full mt-1" />
+                            <button id="saveGroupNameBtn" class="mt-2 bg-indigo-600 text-white px-4 py-1 rounded">Save Name</button>
+                            <button id="deleteGroupBtn" class="mt-2 ml-2 bg-red-600 text-white px-4 py-1 rounded">Delete Group</button>
+                        </div>
+                        <div class="mt-4">
+                            <h6 class="font-medium">Members</h6>
+                            <div id="groupMembersList" class="mt-2 text-sm text-gray-800"></div>
+                            <div class="flex gap-2 mt-3">
+                                <input type="text" id="addMemberInput" placeholder="student email or phone" class="border border-gray-300 rounded-md px-3 py-2 w-full" />
+                                <button id="addMemberBtn" class="bg-green-600 text-white px-4 py-2 rounded">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Suggestions & Reports Panel -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-semibold">Suggestions & Reports</h3>
+                <div class="flex gap-2">
+                    <button id="refreshUsersBtn" class="bg-gray-100 px-3 py-1 rounded">Refresh</button>
+                    <button id="exportAllSuggestionsBtn" class="bg-indigo-600 text-white px-3 py-1 rounded">Export Suggestions (TXT)</button>
+                    <button id="exportLessonsCsvBtn" class="bg-green-600 text-white px-3 py-1 rounded">Export Lessons (CSV)</button>
+                </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">View and export student suggestions submitted on the Ama challenge and download per-student progress.</p>
+            <div class="mt-4 grid md:grid-cols-2 gap-4">
+                <div>
+                    <label class="text-sm font-medium">Select student</label>
+                    <select id="teacherStudentSelect" class="mt-1 block w-full border border-gray-300 rounded px-3 py-2"></select>
+                    <div id="studentProgressPanel" class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded hidden">
+                        <div id="studentSummary"></div>
+                        <div id="studentSuggestions" class="mt-3"></div>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-sm font-medium">Recent Suggestions (latest 20)</label>
+                    <div id="recentSuggestionsList" class="mt-1 max-h-64 overflow-auto border border-gray-200 rounded p-2 bg-white text-sm"></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+    </main>
+    <script>
+    // Show teacher's name in header
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            const user = JSON.parse(localStorage.getItem('currentUser'));
+            if (user && user.role === 'teacher' && user.name) {
+                document.getElementById('teacherName').textContent = user.name.split(' ')[0];
+            }
+        } catch (e) {}
+    });
+    // Group management logic for teachers
+    function slugifyName(name) {
+        return name.replace(/[^a-z0-9]+/gi, '-').replace(/(^-|-$)/g, '').toUpperCase();
+    }
+
+    // Map common quiz titles to their URL pages
+    function mapQuizTitleToUrl(quizTitle) {
+        if (!quizTitle) return '';
+        const t = quizTitle.toLowerCase();
+        if (t.includes('color') || t.includes('colour')) return 'color-theory-quiz.html';
+        if (t.includes('element') || t.includes('elements')) return 'elements-quiz.html';
+        // default: open the generic solver with quiz param
+        return 'solve.html?quiz=' + encodeURIComponent(quizTitle);
+    }
+
+    function renderTeacherGroups() {
+        const container = document.getElementById('teacherGroupsList');
+        let groups = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+        // Support legacy array-of-strings by normalizing to objects
+        groups = groups.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+        if (groups.length === 0) {
+            container.innerHTML = '<div class="text-sm text-gray-500">No groups created yet.</div>';
+            return;
+        }
+        // render clickable names
+        container.innerHTML = groups.map(g => `
+            <div class="py-1">
+                <button data-code="${g.code}" class="group-link text-left text-indigo-600 hover:underline">${g.name}</button>
+            </div>
+        `).join('');
+
+        // attach click handlers
+        Array.from(container.querySelectorAll('.group-link')).forEach(btn => {
+            btn.addEventListener('click', function() {
+                const code = this.getAttribute('data-code');
+                openGroupDetails(code);
+            });
+        });
+    }
+
+    // Group panel toggle and tab logic
+    try {
+        const groupToggleBtn = document.getElementById('groupToggleBtn');
+        const groupPanel = document.getElementById('groupPanel');
+        const caret = document.getElementById('groupToggleCaret');
+        groupToggleBtn.addEventListener('click', function() {
+            const hidden = groupPanel.classList.toggle('hidden');
+            caret.textContent = hidden ? '▸' : '▾';
+        });
+
+        const tabs = Array.from(document.querySelectorAll('.group-tab'));
+        // add ARIA roles and keyboard navigation
+        tabs.forEach((t, i) => {
+            t.setAttribute('role', 'tab');
+            t.setAttribute('tabindex', '0');
+            t.setAttribute('aria-selected', 'false');
+            t.addEventListener('keydown', (ev) => {
+                if (ev.key === 'ArrowRight') tabs[(i+1) % tabs.length].focus();
+                if (ev.key === 'ArrowLeft') tabs[(i-1+tabs.length) % tabs.length].focus();
+                if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); t.click(); }
+            });
+            t.addEventListener('click', () => showTab(t.getAttribute('data-tab')));
+        });
+
+        function showTab(name) {
+            document.getElementById('groupCreateSection').classList.toggle('hidden', name !== 'create');
+            document.getElementById('groupAssignSection').classList.toggle('hidden', name !== 'assign');
+            document.getElementById('groupYourSection').classList.toggle('hidden', name !== 'your');
+            tabs.forEach(t => {
+                const selected = t.getAttribute('data-tab') === name;
+                t.classList.toggle('bg-indigo-100', selected);
+                t.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            if (name === 'your') renderTeacherGroups();
+            // auto-open assign quiz body when assign tab is active
+            if (name === 'assign') {
+                const assignBody = document.getElementById('assignQuizBody');
+                if (assignBody.classList.contains('hidden')) {
+                    assignBody.classList.remove('hidden');
+                    const caret = document.getElementById('assignQuizCaret');
+                    caret.textContent = '▾';
+                }
+            }
+        }
+        // default to Create tab
+        showTab('create');
+    } catch (e) {}
+
+    function openGroupDetails(code) {
+        const groupsRaw = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+        const groups = groupsRaw.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+        const group = groups.find(g => g.code === code);
+        if (!group) return;
+        document.getElementById('groupDetailsPanel').classList.remove('hidden');
+        document.getElementById('groupDetailsTitle').textContent = 'Group: ' + group.code;
+        document.getElementById('editGroupName').value = group.name || group.code;
+        // render members from users localStorage
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const members = users.filter(u => u.groupCode && u.groupCode === group.code && u.role === 'student');
+        const membersContainer = document.getElementById('groupMembersList');
+        if (members.length === 0) {
+            membersContainer.innerHTML = '<div class="text-sm text-gray-500">No members in this group.</div>';
+        } else {
+            membersContainer.innerHTML = members.map(m => `<div class="flex justify-between items-center py-1"><span>${m.email || m.contact}</span><button class="remove-member-btn text-red-600 text-sm" data-id="${m.email || m.contact}">Remove</button></div>`).join('');
+            // attach remove handlers
+            Array.from(membersContainer.querySelectorAll('.remove-member-btn')).forEach(b => {
+                b.addEventListener('click', function() {
+                    const identifier = this.getAttribute('data-id');
+                    if (!confirm('Remove ' + identifier + ' from group?')) return;
+                    let users = JSON.parse(localStorage.getItem('users') || '[]');
+                    users = users.map(u => {
+                        if ((u.email === identifier || u.contact === identifier) && u.groupCode === group.code) {
+                            delete u.groupCode;
+                            delete u.groupName;
+                        }
+                        return u;
+                    });
+                    localStorage.setItem('users', JSON.stringify(users));
+                    openGroupDetails(code); // refresh
+                });
+            });
+        }
+
+        // save / delete handlers
+        document.getElementById('saveGroupNameBtn').onclick = function() {
+            const newName = document.getElementById('editGroupName').value.trim();
+            if (!newName) {
+                alert('Group name cannot be empty');
+                return;
+            }
+            let teacherGroups = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+            teacherGroups = teacherGroups.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+            const idx = teacherGroups.findIndex(g => g.code === group.code);
+            if (idx !== -1) {
+                teacherGroups[idx].name = newName;
+                localStorage.setItem('teacherGroups', JSON.stringify(teacherGroups));
+                renderTeacherGroups();
+                openGroupDetails(code);
+            }
+        };
+
+        document.getElementById('addMemberBtn').onclick = function() {
+            const identifier = document.getElementById('addMemberInput').value.trim();
+            if (!identifier) return;
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            const idx = users.findIndex(u => (u.email === identifier || u.contact === identifier) && u.role === 'student');
+            if (idx === -1) {
+                alert('Student not found. Ensure the student has signed up and that you used their email or contact.');
+                return;
+            }
+            users[idx].groupCode = group.code;
+            users[idx].groupName = group.name || group.code;
+            localStorage.setItem('users', JSON.stringify(users));
+            document.getElementById('addMemberInput').value = '';
+            openGroupDetails(code);
+        };
+
+        document.getElementById('deleteGroupBtn').onclick = function() {
+            if (!confirm('Delete this group? This will remove the group association from students.')) return;
+            let teacherGroups = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+            teacherGroups = teacherGroups.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+            teacherGroups = teacherGroups.filter(g => g.code !== group.code);
+            localStorage.setItem('teacherGroups', JSON.stringify(teacherGroups));
+            // remove groupCode from users
+            let users = JSON.parse(localStorage.getItem('users') || '[]');
+            users = users.map(u => { if (u.groupCode === group.code) { delete u.groupCode; delete u.groupName; } return u; });
+            localStorage.setItem('users', JSON.stringify(users));
+            document.getElementById('groupDetailsPanel').classList.add('hidden');
+            renderTeacherGroups();
+        };
+    }
+
+    // toggle group code controls
+    document.getElementById('enableGroupCodes').addEventListener('change', function() {
+        const enabled = this.checked;
+        const controls = document.getElementById('groupCodeControls');
+        const noCode = document.getElementById('createGroupNoCode');
+        if (enabled) {
+            controls.classList.remove('hidden');
+            noCode.querySelectorAll('input,button').forEach(el => el.classList.add('hidden'));
+        } else {
+            controls.classList.add('hidden');
+            noCode.querySelectorAll('input,button').forEach(el => el.classList.remove('hidden'));
+            // ensure the no-code name input is visible
+            document.getElementById('newGroupNameNoCode').classList.remove('hidden');
+            document.getElementById('createGroupBtnNoCode').classList.remove('hidden');
+        }
+    });
+
+    document.getElementById('generateGroupCode').addEventListener('click', function() {
+        const nameInput = document.getElementById('newGroupName').value.trim();
+        let code;
+        if (nameInput) {
+            const slug = slugifyName(nameInput).substr(0, 8);
+            code = 'GRP-' + slug + '-' + Math.random().toString(36).substr(2, 3).toUpperCase();
+        } else {
+            code = 'GRP-' + Math.random().toString(36).substr(2, 6).toUpperCase();
+        }
+        document.getElementById('newGroupCode').value = code;
+        document.getElementById('groupStatus').textContent = 'Group code generated: ' + code;
+    });
+
+    document.getElementById('createGroupBtn').addEventListener('click', function() {
+        const name = document.getElementById('newGroupName').value.trim();
+        const code = document.getElementById('newGroupCode').value.trim();
+        if (!code) {
+            document.getElementById('groupStatus').textContent = 'Please enter or generate a group code.';
+            return;
+        }
+        let teacherGroups = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+        // normalize legacy strings
+        teacherGroups = teacherGroups.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+        if (!teacherGroups.find(g => g.code === code)) {
+            teacherGroups.push({ name: name || code, code });
+            localStorage.setItem('teacherGroups', JSON.stringify(teacherGroups));
+        }
+        document.getElementById('groupStatus').textContent = 'Group created: ' + code;
+        // clear inputs
+        document.getElementById('newGroupName').value = '';
+        document.getElementById('newGroupCode').value = '';
+        renderTeacherGroups();
+        try { openGroupAndHighlight(code); } catch (e) {}
+    });
+
+    // create without code (optional feature)
+    document.getElementById('createGroupBtnNoCode').addEventListener('click', function() {
+        const name = document.getElementById('newGroupNameNoCode').value.trim();
+        if (!name) {
+            document.getElementById('groupStatus').textContent = 'Please enter a group name.';
+            return;
+        }
+        // auto-generate internal code but don't show input
+        const code = 'GRP-' + slugifyName(name).substr(0,6) + '-' + Math.random().toString(36).substr(2,3).toUpperCase();
+        let teacherGroups = JSON.parse(localStorage.getItem('teacherGroups') || '[]');
+        teacherGroups = teacherGroups.map(g => (typeof g === 'string') ? { name: g, code: g } : g);
+        teacherGroups.push({ name, code });
+        localStorage.setItem('teacherGroups', JSON.stringify(teacherGroups));
+        document.getElementById('groupStatus').textContent = 'Group created: ' + name + (code ? ' (code created internally)' : '');
+        document.getElementById('newGroupNameNoCode').value = '';
+        renderTeacherGroups();
+        try { openGroupAndHighlight(code); } catch (e) {}
+    });
+    // helper: open the group panel, switch to "Your Groups" tab and open details for code
+    function openGroupAndHighlight(code) {
+        try {
+            const groupPanel = document.getElementById('groupPanel');
+            const caret = document.getElementById('groupToggleCaret');
+            if (groupPanel && groupPanel.classList.contains('hidden')) { groupPanel.classList.remove('hidden'); if (caret) caret.textContent = '▾'; }
+            // show your tab
+            try { showTab('your'); } catch (e) {}
+            // tiny delay to ensure list rendered
+            setTimeout(() => { try { openGroupDetails(code); } catch (e) {} }, 150);
+        } catch (e) {}
+    }
+    document.getElementById('assignGroupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const studentEmail = document.getElementById('studentEmail').value.trim();
+        const groupCode = document.getElementById('assignGroupCode').value.trim();
+        if (!studentEmail || !groupCode) {
+            document.getElementById('assignStatus').textContent = 'Please enter both student email/phone and group code.';
+            return;
+        }
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const idx = users.findIndex(u => (u.email === studentEmail || u.contact === studentEmail) && u.role === 'student');
+        if (idx !== -1) {
+            users[idx].groupCode = groupCode;
+            localStorage.setItem('users', JSON.stringify(users));
+            document.getElementById('assignStatus').textContent = 'Student assigned to group: ' + groupCode;
+        } else {
+            document.getElementById('assignStatus').textContent = 'Student not found.';
+        }
+    });
+
+    // Assign Quiz logic
+    document.getElementById('assignQuizForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const quizTitle = document.getElementById('quizTitle').value.trim();
+        const assignToType = document.getElementById('assignToType').value;
+        const groupOrStudent = document.getElementById('groupOrStudent').value.trim();
+        if (!quizTitle || !groupOrStudent) {
+            document.getElementById('quizAssignStatus').textContent = 'Please enter all fields.';
+            return;
+        }
+        let quizAssignments = JSON.parse(localStorage.getItem('quizAssignments') || '[]');
+        const mappedLink = mapQuizTitleToUrl(quizTitle);
+        if (assignToType === 'group') {
+            // Assign to all students in the group (by group name or code)
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let groupStudents = users.filter(u => u.groupCode && (u.groupCode.toLowerCase() === groupOrStudent.toLowerCase() || (u.groupName && u.groupName.toLowerCase() === groupOrStudent.toLowerCase())));
+            if (groupStudents.length === 0) {
+                document.getElementById('quizAssignStatus').textContent = 'No students found in this group.';
+                return;
+            }
+            groupStudents.forEach(student => {
+                quizAssignments.push({ quizTitle, assignedTo: student.email, type: 'group', group: groupOrStudent, link: mappedLink });
+            });
+            localStorage.setItem('quizAssignments', JSON.stringify(quizAssignments));
+            document.getElementById('quizAssignStatus').textContent = 'Quiz assigned to group: ' + groupOrStudent;
+        } else {
+            // Assign to individual student
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            let student = users.find(u => (u.email === groupOrStudent || u.contact === groupOrStudent) && u.role === 'student');
+            if (!student) {
+                document.getElementById('quizAssignStatus').textContent = 'Student not found.';
+                return;
+            }
+            quizAssignments.push({ quizTitle, assignedTo: student.email, type: 'student', link: mappedLink });
+            localStorage.setItem('quizAssignments', JSON.stringify(quizAssignments));
+            document.getElementById('quizAssignStatus').textContent = 'Quiz assigned to student: ' + student.email;
+        }
+        document.getElementById('assignQuizForm').reset();
+    });
+
+    // Optionally, allow typing group name as well as code when assigning students to group
+    // (Add groupName to user object if provided)
+    document.getElementById('assignGroupForm').addEventListener('submit', function(e) {
+        const groupCode = document.getElementById('assignGroupCode').value.trim();
+        // Prompt for group name if not already set
+        let groupName = prompt('Enter group name (optional):');
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+        const idx = users.findIndex(u => (u.email === document.getElementById('studentEmail').value.trim() || u.contact === document.getElementById('studentEmail').value.trim()) && u.role === 'student');
+        if (idx !== -1 && groupName) {
+            users[idx].groupName = groupName;
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    });
+
+    feather.replace();
+    // populate groups list on load
+    try { renderTeacherGroups(); } catch (e) {}
+    // initialize group code toggle (default: disabled)
+    try {
+        const enabled = document.getElementById('enableGroupCodes').checked;
+        if (!enabled) {
+            document.getElementById('groupCodeControls').classList.add('hidden');
+            document.getElementById('newGroupNameNoCode').classList.remove('hidden');
+            document.getElementById('createGroupBtnNoCode').classList.remove('hidden');
+        }
+    } catch (e) {}
+    // Dropdown menu logic
+    const dropdownBtn = document.getElementById('userDropdownBtn');
+    const dropdownMenu = document.getElementById('userDropdownMenu');
+    document.addEventListener('click', function(event) {
+        if (dropdownBtn.contains(event.target)) {
+            dropdownMenu.classList.toggle('hidden');
+        } else {
+            dropdownMenu.classList.add('hidden');
+        }
+    });
+
+    // Collapsible Assign Quiz body
+    try {
+        const header = document.getElementById('assignQuizHeader');
+        const body = document.getElementById('assignQuizBody');
+        const caret = document.getElementById('assignQuizCaret');
+        header.addEventListener('click', function() {
+            const isHidden = body.classList.toggle('hidden');
+            caret.textContent = isHidden ? '▸' : '▾';
+        });
+    } catch (e) {}
+    </script>
+    <script>
+    // Suggestions & Reports wiring
+    // NOTE: The export and reporting helpers below read data directly from the
+    // browser's localStorage (keys like `amaSuggestions`, `users`, `amaChallengeProgress`).
+    // These exports are local to this browser/profile and do NOT aggregate data
+    // from other students' devices or browsers. See `TEACHER_EXPORT_README.md`
+    // at the project root for full details and recommended server-side options.
+    (function() {
+        function safeParse(key, fallback) { try { return JSON.parse(localStorage.getItem(key) || 'null') || fallback; } catch(e) { return fallback; } }
+
+        function loadUsers() {
+            return safeParse('users', []);
+        }
+
+        function loadSuggestions() {
+            return safeParse('amaSuggestions', []);
+        }
+
+        function populateStudentSelect() {
+            const select = document.getElementById('teacherStudentSelect');
+            if (!select) return;
+            const users = loadUsers();
+            // prefer students; fallback to suggestion authors
+            const students = users.filter(u => u.role === 'student' || u.role === 'learner');
+            // build options unique by id/email/name
+            const seen = new Set();
+            select.innerHTML = '';
+            if (students.length === 0) {
+                // fallback: build from suggestions list
+                const suggestions = loadSuggestions();
+                const authors = [];
+                suggestions.forEach(s => { const id = s.userId || s.userName || s.email || 'anon'; if (!seen.has(id)) { seen.add(id); authors.push({ id, name: s.userName || s.userId || 'Anonymous' }); } });
+                if (authors.length === 0) {
+                    select.innerHTML = '<option value="">No students found</option>';
+                    return;
+                }
+                authors.forEach(a => select.appendChild(new Option(a.name + ' (' + a.id + ')', a.id)));
+                return;
+            }
+
+            // Add a placeholder option
+            select.appendChild(new Option('-- Select student --', ''));
+            students.forEach(u => {
+                const id = u.username || u.email || u.id || u.name;
+                if (!id || seen.has(id)) return;
+                seen.add(id);
+                const label = (u.name || id) + (u.email ? ' <' + u.email + '>' : '');
+                select.appendChild(new Option(label, id));
+            });
+        }
+
+        function renderStudentDetails(userId) {
+            const panel = document.getElementById('studentProgressPanel');
+            const summary = document.getElementById('studentSummary');
+            const suggestionsEl = document.getElementById('studentSuggestions');
+            if (!panel || !summary || !suggestionsEl) return;
+            if (!userId) { panel.classList.add('hidden'); return; }
+            const users = loadUsers();
+            let user = users.find(u => (u.username === userId || u.email === userId || u.id === userId || u.name === userId));
+            // fallback: try to find by matching start of name/email
+            if (!user) user = users.find(u => (u.name && userId && (userId.indexOf(u.name) === 0)));
+
+            const suggestions = loadSuggestions().filter(s => (s.userId === userId) || (s.userName && s.userName === userId));
+
+            panel.classList.remove('hidden');
+            // summary: show basic progress if available
+            let html = '';
+            if (user) {
+                html += `<div class="font-semibold">${user.name || user.email || user.username}</div>`;
+                const lessons = (user.progress && user.progress.lessonsCompleted) ? user.progress.lessonsCompleted : (user.lessonsCompleted || 0);
+                const total = (user.progress && user.progress.lessonsTotal) ? user.progress.lessonsTotal : '';
+                html += `<div class="text-sm text-gray-700">Lessons completed: ${lessons}${total ? (' / ' + total) : ''}</div>`;
+                // offline status from several possible fields
+                const offline = (user.amaChallengeProgress && user.amaChallengeProgress.offline) || (user.scores && user.scores.amaOffline) || (user.userScores && user.userScores.amaOffline) || 0;
+                html += `<div class="text-sm text-gray-700">Offline assignment: ${offline ? 'Done' : 'Not done'}</div>`;
+            } else {
+                html += `<div class="font-semibold">${userId}</div>`;
+                html += `<div class="text-sm text-gray-700">No profile data available in localStorage for this identifier.</div>`;
+            }
+            summary.innerHTML = html;
+
+            // suggestions list
+            if (!suggestions.length) {
+                suggestionsEl.innerHTML = '<div class="text-sm text-gray-500">No suggestions from this student.</div>';
+            } else {
+                suggestionsEl.innerHTML = suggestions.map(s => `
+                    <div class="border-b py-2">
+                        <div class="text-sm font-medium">${s.userName || s.userId}</div>
+                        <div class="text-xs text-gray-600">Design: ${s.design} • ${new Date(s.ts).toLocaleString()}</div>
+                        <div class="mt-1 text-sm text-gray-800">${(s.text || '').replace(/\n/g, '<br>')}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function renderRecentSuggestions() {
+            const container = document.getElementById('recentSuggestionsList');
+            if (!container) return;
+            const all = loadSuggestions().slice().sort((a,b) => new Date(b.ts) - new Date(a.ts)).slice(0,20);
+            if (!all.length) { container.innerHTML = '<div class="text-sm text-gray-500">No suggestions yet.</div>'; return; }
+            container.innerHTML = all.map(s => `
+                <div class="mb-2 border-b pb-2">
+                    <div class="text-sm font-medium">${s.userName || s.userId || 'Anonymous'}</div>
+                    <div class="text-xs text-gray-500">${new Date(s.ts).toLocaleString()} • ${s.design}</div>
+                    <div class="text-sm text-gray-800 mt-1">${(s.text||'').replace(/\n/g,'<br>')}</div>
+                </div>
+            `).join('');
+        }
+
+        function exportAllSuggestionsTxt() {
+            const arr = loadSuggestions();
+            if (!arr.length) return alert('No suggestions to export.');
+            const lines = arr.map((s,i) => `Suggestion ${i+1}\nStudent: ${s.userName || s.userId || 'Unknown'}\nUserId: ${s.userId || ''}\nDesign: ${s.design}\nTime: ${s.ts}\nText:\n${s.text}\n-----------------------\n`);
+            const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'ama-suggestions.txt'; a.click();
+        }
+
+        function exportLessonsCsv() {
+            const users = loadUsers();
+            if (!users.length) return alert('No user data to export.');
+            const header = ['id','name','email','lessonsCompleted','lessonsTotal','offline'];
+            const rows = users.map(u => {
+                const id = u.username || u.email || u.id || u.name || '';
+                const name = (u.name || '').replace(/\"/g, '"');
+                const email = (u.email || '').replace(/\"/g, '"');
+                const lessonsCompleted = (u.progress && u.progress.lessonsCompleted) ? u.progress.lessonsCompleted : (u.lessonsCompleted || 0);
+                const lessonsTotal = (u.progress && u.progress.lessonsTotal) ? u.progress.lessonsTotal : '';
+                const offline = (u.amaChallengeProgress && u.amaChallengeProgress.offline) ? 1 : ((u.scores && u.scores.amaOffline) ? 1 : 0);
+                return [id, '"'+name+'"', '"'+email+'"', lessonsCompleted, lessonsTotal, offline].join(',');
+            });
+            const content = header.join(',') + '\n' + rows.join('\n');
+            const blob = new Blob([content], { type: 'text/csv' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'lesson-progress.csv'; a.click();
+        }
+
+        // Hook up UI
+        document.getElementById('refreshUsersBtn').addEventListener('click', function() { populateStudentSelect(); renderRecentSuggestions(); alert('Refreshed students and suggestions from localStorage'); });
+        document.getElementById('exportAllSuggestionsBtn').addEventListener('click', exportAllSuggestionsTxt);
+        document.getElementById('exportLessonsCsvBtn').addEventListener('click', exportLessonsCsv);
+        document.getElementById('teacherStudentSelect').addEventListener('change', function() { renderStudentDetails(this.value); });
+
+        // Initialize
+        try { populateStudentSelect(); renderRecentSuggestions(); } catch(e) { console.error(e); }
+
+        // Also refresh when storage changes in this tab (useful after imports)
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'users' || e.key === 'amaSuggestions') {
+                populateStudentSelect(); renderRecentSuggestions();
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summative Assessment & Challenge | Visual Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <style>
+            .asterisk-list {
+                padding-left: 1.5em;
+                margin-bottom: 1em;
+            }
+            .asterisk-list li {
+                list-style: none;
+                position: relative;
+                margin-bottom: 0.25em;
+                padding-left: 1em;
+                text-align: left;
+            }
+            .asterisk-list li::before {
+                content: "*";
+                position: absolute;
+                left: 0;
+                color: #6366f1;
+                font-weight: bold;
+            }
+        </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span>
+                        <img src="IMAGES/LOGO.svg" alt="ArtKonekt Logo" class="h-10 w-auto" />
+                    </span>
+                    <span class="ml-2 text-xl font-semibold text-gray-900">ArtKonekt</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="login.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Learn</a>
+                    <a href="solve.html" class="text-indigo-600 border-b-2 border-indigo-600 px-3 py-2 text-sm font-medium">Solve</a>
+                </div>
+                <div class="flex items-center">
+                    <span id="authNav"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">Test your knowledge with the quizzes & <br> Ama's Design Challenge</h1>
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Summative Quiz: Elements & Principles of Design -->
+            <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
+                <i data-feather="edit-3" class="h-10 w-10 text-indigo-600 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-2 text-gray-800">Summative Quiz: Elements & Principles of Design</h2>
+                                <p class="mb-2 text-gray-600 text-center">Test your knowledge of the elements and principles of design with 30 multiple-choice questions (MCQs).</p>
+                                <ul class="mb-4 text-gray-500 text-sm list-disc list-inside">
+                                                        <ul class="asterisk-list text-gray-500 text-sm">
+                                                            <li>Questions cover line, shape, color, texture, space, balance, contrast, emphasis, and more.</li>
+                                                            <li>Each question has one correct answer.</li>
+                                                            <li>Score is shown at the end.</li>
+                                                        </ul>
+                                </ul>
+                <a href="elements-quiz.html" id="start-elements-quiz" class="bg-indigo-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-indigo-700">Start Quiz</a>
+            </div>
+            <!-- Summative Quiz: Colour Theory -->
+            <div class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center">
+                <i data-feather="droplet" class="h-10 w-10 text-purple-600 mb-4"></i>
+                <h2 class="text-xl font-semibold mb-2 text-gray-800">Summative Quiz: Colour Theory</h2>
+                                <p class="mb-2 text-gray-600 text-center">Test your understanding of colour theory with 30 multiple-choice questions (MCQs).</p>
+                                <ul class="mb-4 text-gray-500 text-sm list-disc list-inside">
+                                                        <ul class="asterisk-list text-gray-500 text-sm">
+                                                            <li>Questions cover primary, secondary, tertiary colors, color schemes, warm/cool colors, and color mixing.</li>
+                                                            <li>Each question has one correct answer.</li>
+                                                            <li>Score is shown at the end.</li>
+                                                        </ul>
+                                </ul>
+                <a href="color-theory-quiz.html" id="start-color-quiz" class="bg-purple-600 text-white px-6 py-2 rounded-md font-semibold hover:bg-purple-700">Start Quiz</a>
+            </div>
+        </div>
+        <!-- Ama's Design Challenge -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mt-12 flex flex-col items-center">
+            <i data-feather="award" class="h-10 w-10 text-yellow-500 mb-4"></i>
+            <h2 class="text-xl font-semibold mb-2 text-gray-800">Ama's Design Challenge</h2>
+                        <p class="mb-2 text-gray-600 text-center">Apply everything you've learned to solve Ama's real-world design challenge.</p>
+                        <ul class="mb-4 text-gray-500 text-sm list-disc list-inside">
+                                            <ul class="asterisk-list text-gray-500 text-sm">
+                                                <li>Watch a short video about Ama's design problem.</li>
+                                                <li>Complete a drag-and-drop activity to match design elements.</li>
+                                                <li>Reflect and submit your own design solution.</li>
+                                                <li>Earn a badge for completing the challenge!</li>
+                                            </ul>
+                        </ul>
+            <a href="ama-challenge.html" id="start-challenge" class="bg-yellow-500 text-white px-6 py-2 rounded-md font-semibold hover:bg-yellow-600">Start Challenge</a>
+    <script>
+    feather.replace();
+
+    // Enhanced protection and auth UI for Solve page
+    function getCurrentUser() {
+        try { return JSON.parse(localStorage.getItem('currentUser')); } catch (e) { return null; }
+    }
+
+    function userHasCompleted(user, lessonId) {
+        return !!(user && user.progress && Array.isArray(user.progress.lessonsCompleted) && user.progress.lessonsCompleted.includes(lessonId));
+    }
+
+    function requireLessonFor(actionName, requiredLessonId) {
+        return function(e) {
+            const user = getCurrentUser();
+            if (!user) {
+                e.preventDefault();
+                alert('Please sign in to access ' + actionName + '.');
+                window.location.href = 'login.html';
+                return;
+            }
+            if (requiredLessonId && !userHasCompleted(user, requiredLessonId)) {
+                e.preventDefault();
+                alert('Please complete the lesson "' + (requiredLessonId === 'lesson1' ? 'Balance & Harmony' : requiredLessonId === 'lesson2' ? 'Emphasis in Design' : 'Colour Theory & Mood') + '" before attempting ' + actionName + '.');
+                // Optionally redirect user to the lesson or dashboard
+                if (confirm('Go to the lesson now?')) {
+                    window.location.href = requiredLessonId + '.html';
+                }
+                return;
+            }
+            // otherwise, allow the anchor's default navigation
+        };
+    }
+
+    // Wire up buttons with per-quiz required lessons
+    document.getElementById('start-elements-quiz').addEventListener('click', requireLessonFor('Elements Quiz', 'lesson1'));
+    document.getElementById('start-color-quiz').addEventListener('click', requireLessonFor('Colour Theory Quiz', 'lesson2'));
+    // Ama's challenge requires all lessons completed
+    document.getElementById('start-challenge').addEventListener('click', function(e) {
+        const user = getCurrentUser();
+        if (!user) {
+            e.preventDefault();
+            alert('Please sign in to access Ama\'s Challenge.');
+            window.location.href = 'login.html';
+            return;
+        }
+        const required = ['lesson1','lesson2','lesson3'];
+        const missing = required.filter(l => !userHasCompleted(user, l));
+        if (missing.length > 0) {
+            e.preventDefault();
+            alert('Please complete all lessons before attempting Ama\'s Challenge.');
+            if (confirm('Go to your dashboard to continue lessons?')) {
+                window.location.href = 'dashboard_new.html';
+            }
+            return;
+        }
+    });
+
+    // Show a welcome or login/signup in the top nav for the Solve page
+    (function renderAuthNav() {
+        const container = document.getElementById('authNav');
+        const user = getCurrentUser();
+        if (!container) return;
+        if (user && user.name) {
+            container.innerHTML = `
+                <div class="relative group">
+                    <button id="solveUserBtn" class="flex items-center space-x-2 focus:outline-none">
+                        <span class="text-gray-700 text-sm font-medium">Welcome, ${user.name.split(' ')[0]}</span>
+                        <i data-feather="chevron-down" class="h-4 w-4 text-gray-500"></i>
+                    </button>
+                    <div id="solveUserMenu" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden">
+                        <a href="dashboard_new.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        <a href="#" id="solveLogout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                    </div>
+                </div>
+            `;
+            feather.replace();
+            // wired dropdown
+            const btn = document.getElementById('solveUserBtn');
+            const menu = document.getElementById('solveUserMenu');
+            btn && btn.addEventListener('click', function() { menu.classList.toggle('hidden'); });
+            document.getElementById('solveLogout').addEventListener('click', function(e){
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                localStorage.removeItem('userRole');
+                window.location.href = 'login.html';
+            });
+        } else {
+            container.innerHTML = `<a href="login.html" class="text-gray-500 hover:text-gray-700 px-3 py-2 text-sm font-medium">Login</a><a href="signup.html" class="ml-4 bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">Sign Up</a>`;
+        }
+    })();
+    </script>
+        </div>
+        
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i data-feather="aperture" class="mr-2"></i>
+                        Visual Arts Journey
+                    </a>
+                    <p class="text-gray-400 mt-2">For SHS Visual Arts Curriculum</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="info"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="mail"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                        <i data-feather="download"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Visual Arts Journey. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
